@@ -15,7 +15,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    "https://gitlab.com/xarvex/lazy-load.nvim", -- hey thats me
+    {
+        "https://gitlab.com/xarvex/lazy-load.nvim", -- hey I made this
+        lazy = true -- only load once required
+    },
     {
         import = "plugin" -- load other plugins after
     }
