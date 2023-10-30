@@ -3,6 +3,8 @@
 Personal Neovim configuration I use, includes my own plugin
 [lazy-load.nvim](https://gitlab.com/xarvex/lazy-load.nvim).
 
+I really enjoy lazy loading.
+
 ## Prerequisites
 
 - [Neovim](https://neovim.io/)
