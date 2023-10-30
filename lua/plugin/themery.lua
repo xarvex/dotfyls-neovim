@@ -6,7 +6,7 @@ return {
         },
         keys = {
             {
-                "<leader>th",
+                "<C-A-t>",
                 vim.cmd.Themery
             }
         },
