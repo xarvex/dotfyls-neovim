@@ -30,6 +30,7 @@ end
 require("lazy").setup({
     {
         "https://gitlab.com/xarvex/lazy-load.nvim", -- hey I made this
+        branch = "0.0.x",
         lazy = true -- only load once required
     },
     {
