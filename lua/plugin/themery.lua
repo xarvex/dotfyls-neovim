@@ -13,7 +13,8 @@ return {
         opts = {
             themes = {
                 "tokyonight",
-                "rose-pine"
+                "rose-pine",
+                "onedark"
             },
             themeConfigFile = vim.fn.stdpath("config") .. "/lua/generated/theme.lua"
         }
@@ -36,6 +37,14 @@ return {
             hide_inactive_statusline = false,
             dim_inactive = false,
             lualine_bold = false
+        }
+    },
+    {
+        "navarasu/onedark.nvim",
+        lazy = true,
+        opts = {
+            style = "darker",
+            transparent = true
         }
     },
     {
