@@ -2,7 +2,7 @@ require("xarvex")
 
 -- use lazy.nvim as plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if vim.fn.isdirectory(lazypath) == 0 then
     vim.fn.system({
         "git",
         "clone",
@@ -13,6 +13,19 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+
+local generatedpath = vim.fn.stdpath("config") .. "/lua/generated"
+local generatedtheme = generatedpath .. "/theme.lua"
+if vim.fn.filereadable(generatedtheme) == 0 then
+    if vim.fn.isdirectory(generatedpath) == 0 then
+        vim.fn.mkdir(generatedpath, "p")
+    end
+    vim.fn.writefile({
+        "-- Themery block",
+        "-- This block will be replaced by Themery.",
+        "-- end themery block"
+    }, generatedtheme, "b")
+end
 
 require("lazy").setup({
     {
