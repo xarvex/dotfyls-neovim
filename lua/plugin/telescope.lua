@@ -1,4 +1,4 @@
-local lazy_load = require("lazy-load")
+local lazy_telescope = require("lazy-load"):require("telescope.builtin")
 
 return {
     "nvim-telescope/telescope.nvim",
@@ -20,8 +20,8 @@ return {
     },
     cmd = "Telescope",
     keys = {
-        lazy_load.keymap_require("n", "<leader>ff", "telescope.builtin", "find_files", {}),
-        lazy_load.keymap_require("n", "<C-p>", "telescope.builtin", "git_files", {}),
-        lazy_load.keymap_require("n", "<leader>fs", "telescope.builtin", "live_grep")
+        lazy_telescope:keymap_require("n", "<leader>ff", nil, "find_files", {}),
+        lazy_telescope:keymap_require("n", "<C-p>", nil, "git_files", {}),
+        lazy_telescope:keymap_require("n", "<leader>fs", nil, "live_grep")
     }
 }
