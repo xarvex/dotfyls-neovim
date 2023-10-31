@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- return to file exporer
+vim.keymap.set("n", "-", vim.cmd.Ex)
 
 -- remove ending newline
 vim.keymap.set("n", "J", "mzJ`z")
