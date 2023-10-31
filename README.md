@@ -1,7 +1,11 @@
 # Neovim Config
 
 Personal Neovim configuration I use, includes my own plugin
-[lazy-load.nvim](https://gitlab.com/xarvex/lazy-load.nvim).
+[lazy-load.nvim](https://gitlab.com/xarvex/lazy-load.nvim)
+(GitHub [mirror](https://github.com/Xarvex/lazy-load.nvim)).
+
+Main repository lives on [GitLab](https://gitlab.com/dotfyls/neovim).
+[GitHub](https://github.com/Xarvex/dotfyls-neovim) serves as a mirror.
 
 I really enjoy lazy loading.
 
