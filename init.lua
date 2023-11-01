@@ -28,7 +28,7 @@ if vim.fn.filereadable(generatedtheme) == 0 then
 end
 
 -- do not use latest dev of my plugin
-local branch = vim.env.USER == "xarvex" and "dev" or "0.0.x"
+local branch = vim.env.USER == "xarvex" and "dev" or "0.1.x"
 require("lazy").setup({
     {
         "https://gitlab.com/xarvex/lazy-load.nvim", -- hey I made this
