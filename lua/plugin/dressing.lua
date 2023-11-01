@@ -1,10 +1,12 @@
+local lazy_dressing = require("lazy-load"):require("dressing")
+
 vim.ui.select = function(...)
-    require("dressing")
+    lazy_dressing:load()
     vim.ui.select(...)
 end
 
 vim.ui.input = function(...)
-    require("dressing")
+    lazy_dressing:load()
     vim.ui.input(...)
 end
 
