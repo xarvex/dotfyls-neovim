@@ -13,9 +13,9 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.swapfile = false
 vim.opt.backup = true
-vim.opt.backupdir = vim.fn.stdpath("data") .. "/backup"
+vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
