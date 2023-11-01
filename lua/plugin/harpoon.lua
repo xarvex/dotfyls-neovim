@@ -7,7 +7,13 @@ local keys = {
 }
 
 for i = 1, 9 do
-    table.insert(keys, lazy_harpoon_ui:keymap_require("n", string.format("<leader>%s", i), nil, "nav_file", i))
+    table.insert(keys, lazy_harpoon_ui:keymap_require(
+        "n",
+        string.format("<leader>%s", i),
+        nil,
+        "nav_file",
+        i
+    ))
 end
 
 return {
