@@ -30,6 +30,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
 
 -- removing the crutches
+vim.opt.mouse = nil
 for _, k in ipairs({
     "Up",
     "Down",
@@ -50,5 +51,5 @@ for _, k in ipairs({
     "kPageDown",
     "kDel"
 }) do
-    vim.keymap.set("n", string.format("<%s>", k), "<Nop>")
+    vim.keymap.set({ "n", "i", "v", "x" }, string.format("<%s>", k), "<Nop>")
 end
