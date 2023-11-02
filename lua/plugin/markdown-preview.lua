@@ -3,7 +3,7 @@ return {
     cmd = {
         "MarkdownPreview",
         "MarkdownPreviewStop",
-        "MarkdownPreviewToggle",
+        "MarkdownPreviewToggle"
     },
     keys = {
         {
