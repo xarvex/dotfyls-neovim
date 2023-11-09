@@ -52,4 +52,5 @@ for _, k in ipairs({
     "kDel"
 }) do
     vim.keymap.set({ "n", "i", "v", "x" }, string.format("<%s>", k), "<Nop>")
+    vim.keymap.set({ "n", "i", "v", "x" }, string.format("<C-%s>", k), "<Nop>")
 end
