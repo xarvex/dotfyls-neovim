@@ -18,7 +18,6 @@ return {
         "rose-pine/neovim",
         name = "rose-pine",
         lazy = true,
-        priority = 1000,
         opts = {
             variant = "main",
             dark_variant = "main",
@@ -38,7 +37,6 @@ return {
     {
         "folke/tokyonight.nvim",
         lazy = true,
-        priority = 1000,
         opts = {
             style = "night",
             transparent = true,

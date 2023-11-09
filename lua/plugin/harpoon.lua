@@ -14,6 +14,5 @@ end
 
 return {
     "ThePrimeagen/harpoon",
-    lazy = true,
     keys = keys
 }
