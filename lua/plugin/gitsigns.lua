@@ -1,8 +1,5 @@
 return {
     "lewis6991/gitsigns.nvim",
-    event = {
-        "BufNewFile",
-        "BufReadPre"
-    },
+    event = { "BufNewFile", "BufReadPre" },
     config = true
 }

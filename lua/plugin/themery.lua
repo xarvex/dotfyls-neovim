@@ -1,14 +1,9 @@
 return {
     {
         "zaldih/themery.nvim",
-        cmd = {
-            "Themery"
-        },
+        cmd = "Themery",
         keys = {
-            {
-                "<C-A-t>",
-                vim.cmd.Themery
-            }
+            { "<C-A-t>", vim.cmd.Themery }
         },
         opts = {
             themes = {
@@ -49,9 +44,7 @@ return {
             transparent = true,
             terminal_colors = true,
             styles = {
-                keywords = {
-                    italic = false
-                },
+                keywords = { italic = false },
                 sidebars = "transparent",
                 floats = "transparent"
             },

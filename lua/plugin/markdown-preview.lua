@@ -6,18 +6,11 @@ return {
         "MarkdownPreviewToggle"
     },
     keys = {
-        {
-            "<leader>md",
-            vim.cmd.MarkdownPreviewToggle
-        }
+        { "<leader>md", vim.cmd.MarkdownPreviewToggle }
     },
-    ft = {
-        "markdown"
-    },
+    ft = { "markdown" },
     build = "cd app && yarn install",
     init = function()
-        vim.g.mkdp_filetypes = {
-            "markdown"
-        }
+        vim.g.mkdp_filetypes = { "markdown" }
     end
 }

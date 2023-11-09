@@ -1,25 +1,13 @@
 return {
     "doctorfree/cheatsheet.nvim",
     dependencies = {
-        {
-            "nvim-telescope/telescope.nvim"
-        },
-        {
-            "nvim-lua/popup.nvim"
-        },
-        {
-            "nvim-lua/plenary.nvim"
-        }
+        "nvim-telescope/telescope.nvim",
+        "nvim-lua/popup.nvim",
+        "nvim-lua/plenary.nvim"
     },
-    cmd = {
-        "Cheatsheet",
-        "CheatsheetEdit"
-    },
+    cmd = { "Cheatsheet", "CheatsheetEdit" },
     keys = {
-        {
-            "<leader>?",
-            vim.cmd.Cheatsheet
-        }
+        { "<leader>?", vim.cmd.Cheatsheet }
     },
     config = function()
         local ctactions = require("cheatsheet.telescope.actions")
@@ -33,17 +21,11 @@ return {
                     "netrw",
                     "unicode"
                 },
-                disabled = {
-                    "nerd-fonts"
-                }
+                disabled = { "nerd-fonts" }
             },
             bundled_plugin_cheatsheets = {
-                enabled = {
-                    "telescope.nvim"
-                },
-                disabled = {
-                    "gitsigns"
-                }
+                enabled = { "telescope.nvim" },
+                disabled = { "gitsigns" }
             },
             include_only_installed_plugins = true,
             telescope_mappings = {

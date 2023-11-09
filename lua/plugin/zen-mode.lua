@@ -11,10 +11,7 @@ return {
         },
         opts = {
             window = {
-                options = {
-                    number = true,
-                    relativenumber = true
-                }
+                options = { number = true, relativenumber = true }
             }
         }
     },
@@ -26,9 +23,7 @@ return {
             "TwilightEnable"
         },
         opts = {
-            dimming = {
-                inactive = true
-            },
+            dimming = { inactive = true },
             context = 10,
             expand = {
                 "function_definition",

@@ -35,8 +35,6 @@ require("lazy").setup({
         branch = branch,
         lazy = true -- only load once required
     },
-    {
-        import = "plugin" -- load other plugins after
-    }
+    { import = "plugin" } -- load other plugins after
 })
 vim.keymap.set("n", "<C-A-l>", vim.cmd.Lazy)
