@@ -5,7 +5,7 @@ Personal Neovim configuration I use, includes my own plugin
 (GitHub [mirror](https://github.com/Xarvex/lazy-load.nvim)).
 
 Main repository lives on [GitLab](https://gitlab.com/dotfyls/neovim).
-[GitHub](https://github.com/Xarvex/dotfyls-neovim) serves as a mirror.
+Mirror can be found through [GitHub](https://github.com/Xarvex/dotfyls-neovim).
 
 I really enjoy lazy loading.
 
