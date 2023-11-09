@@ -1,1 +1,1 @@
-require("generated.theme") -- require the theme selected by themery
+require("generated.theme") -- require the theme selected by Themery
