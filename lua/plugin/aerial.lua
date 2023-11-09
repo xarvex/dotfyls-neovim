@@ -1,3 +1,12 @@
+-- I should look into making this part of my plugin
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("LazyLoad", { clear = true }),
+    callback = function()
+        vim.keymap.set("n", "{", vim.cmd.AerialPrev, { buffer = 0 })
+        vim.keymap.set("n", "}", vim.cmd.AerialNext, { buffer = 0 })
+    end
+})
+
 return {
     "stevearc/aerial.nvim",
     dependencies = {
@@ -21,14 +30,5 @@ return {
             vim.cmd.AerialToggle
         }
     },
-    opts = {
-        on_attach = function(bufnr)
-            vim.keymap.set("n", "{", vim.cmd.AerialPrev, {
-                buffer = bufnr
-            })
-            vim.keymap.set("n", "}", vim.cmd.AerialNext, {
-                buffer = bufnr
-            })
-        end
-    }
+    config = true
 }
