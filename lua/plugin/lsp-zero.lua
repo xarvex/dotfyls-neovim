@@ -97,38 +97,34 @@ return {
                         })
                     end,
                     lua_ls = function()
-                        local lua_opts = lsp_zero.nvim_lua_ls()
+                        local sourcing = "<Nop>"
 
-                        lua_opts.on_init = function(client)
-                            local path = client.workspace_folders[1].name
-                            if path:gsub("/$", "") == vim.fn.stdpath("config") .. "/lua" then
-                                local plugins = {}
-                                for token in string.gmatch(vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/*"), "[^\r\n]+") do
-                                    table.insert(plugins, token)
+                        local lua_opts = {
+                            on_init = function(client)
+                                if client.workspace_folders[1].name:gsub("/$", "") == vim.fn.stdpath("config") .. "/lua" then
+                                    local plugins = {}
+                                    for token in string.gmatch(vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/*"), "[^\r\n]+") do
+                                        table.insert(plugins, token)
+                                    end
+
+                                    sourcing = vim.cmd.so
+
+                                    client.config = vim.tbl_deep_extend("force", client.config, lsp_zero.nvim_lua_ls())
+                                    client.config.settings.Lua.workspace.library = plugins
+
+                                    client.notify("workspace/didChangeConfiguration", {
+                                        settings = client.config.settings
+                                    })
                                 end
 
-                                client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-                                    Lua = {
-                                        runtime = { version = "LuaJIT" },
-                                        workspace = {
-                                            checkThirdParty = false,
-                                            library = plugins
-                                        }
-                                    }
-                                })
+                                return true
+                            end,
+                            on_attach = function(_, bufnr)
+                                local opts = { buffer = bufnr, remap = false }
 
-                                client.notify("workspace/didChangeConfiguration", {
-                                    settings = client.config.settings
-                                })
+                                vim.keymap.set("n", "<leader><leader>", sourcing, opts)
                             end
-
-                            return true
-                        end
-                        lua_opts.on_attach = function(_, bufnr)
-                            local opts = { buffer = bufnr, remap = false }
-
-                            vim.keymap.set("n", "<leader><leader>", vim.cmd.so, opts)
-                        end
+                        }
 
                         require("lspconfig").lua_ls.setup(lua_opts)
                     end
