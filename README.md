@@ -7,7 +7,8 @@ Personal [Neovim] configuration I use, includes my own plugin
 Main repository lives on [GitLab](https://gitlab.com/dotfyls/neovim).
 Mirror can be found through [GitHub](https://github.com/Xarvex/dotfyls-neovim).
 
-I really enjoy lazy loading.
+I really enjoy lazy loading. Everything is lazy loaded if possible.
+
 
 ## Prerequisites
 
