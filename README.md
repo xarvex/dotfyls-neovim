@@ -1,6 +1,6 @@
 # Neovim Config
 
-Personal Neovim configuration I use, includes my own plugin
+Personal [Neovim] configuration I use, includes my own plugin
 [lazy-load.nvim](https://gitlab.com/xarvex/lazy-load.nvim)
 (GitHub [mirror](https://github.com/Xarvex/lazy-load.nvim)).
 
@@ -11,8 +11,11 @@ I really enjoy lazy loading.
 
 ## Prerequisites
 
-- [Neovim](https://neovim.io/)
+- [Neovim]
 - [Node](https://nodejs.org)
-- [Yarn](https://yarnpkg.com/)
+- [Yarn](https://yarnpkg.com)
 - [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
 - [sharkdp/fd](https://github.com/sharkdp/fd) (mostly optional)
+
+
+[Neovim]: https://neovim.io
