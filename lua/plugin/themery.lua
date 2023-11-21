@@ -7,11 +7,20 @@ return {
         },
         opts = {
             themes = {
+                "fluoromachine",
                 "tokyonight",
                 "rose-pine",
                 "onedark"
             },
             themeConfigFile = vim.fn.stdpath("config") .. "/lua/generated/theme.lua"
+        }
+    },
+    {
+        "maxmx03/fluoromachine.nvim",
+        opts = {
+            theme = "fluoromachine",
+            transparent = "full",
+            glow = false
         }
     },
     {
