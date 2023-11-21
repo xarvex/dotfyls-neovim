@@ -9,8 +9,7 @@ return {
             themes = {
                 "fluoromachine",
                 "tokyonight",
-                "rose-pine",
-                "onedark"
+                "rose-pine"
             },
             themeConfigFile = vim.fn.stdpath("config") .. "/lua/generated/theme.lua"
         }
@@ -33,14 +32,6 @@ return {
             disable_background = true,
             disable_float_background = true,
             disable_italics = true
-        }
-    },
-    {
-        "navarasu/onedark.nvim",
-        lazy = true,
-        opts = {
-            style = "darker",
-            transparent = true
         }
     },
     {
