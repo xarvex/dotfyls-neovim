@@ -7,6 +7,8 @@ return {
         },
         opts = {
             themes = {
+                "oxocarbon",
+                "carbonfox",
                 "tokyonight",
                 "rose-pine"
             },
@@ -24,6 +26,15 @@ return {
             disable_float_background = true,
             disable_italics = true
         }
+    },
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = true,
+        opts = { options = { transparent = true } }
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        lazy = true
     },
     {
         "folke/tokyonight.nvim",
