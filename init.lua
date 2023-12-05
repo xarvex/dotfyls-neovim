@@ -33,8 +33,8 @@ require("lazy").setup({
     {
         "https://gitlab.com/xarvex/lazy-load.nvim", -- hey I made this
         branch = branch,
-        lazy = true -- only load once required
+        lazy = true                                 -- only load once required
     },
-    { import = "plugin" } -- load other plugins after
+    { import = "plugin" }                           -- load other plugins after
 })
 vim.keymap.set("n", "<C-A-l>", vim.cmd.Lazy)
