@@ -24,6 +24,8 @@ return {
                 "html",
                 "css"
             },
+            ignore_install = {},
+            modules = {},
             sync_install = false,
             highlight = {
                 enable = true,
