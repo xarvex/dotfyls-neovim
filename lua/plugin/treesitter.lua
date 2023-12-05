@@ -26,12 +26,12 @@ return {
             },
             ignore_install = {},
             modules = {},
-            sync_install = false,
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false
             },
-            indent = { enable = true }
+            indent = { enable = true },
+            sync_install = false
         })
     end
 }
