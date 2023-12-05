@@ -8,9 +8,7 @@ return {
         require("nvim-treesitter.install").update({ with_sync = true })()
     end,
     config = function()
-        local configs = require("nvim-treesitter.configs")
-
-        configs.setup({
+        require("nvim-treesitter.configs").setup({
             ensure_installed = {
                 "go",
                 "c",

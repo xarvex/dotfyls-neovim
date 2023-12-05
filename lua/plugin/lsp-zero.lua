@@ -86,9 +86,7 @@ return {
                 handlers = {
                     lsp_zero.default_setup,
                     clangd = function()
-                        local clangd = require("lspconfig").clangd
-
-                        clangd.setup({
+                        require("lspconfig").clangd.setup({
                             on_attach = function(_, bufnr)
                                 local opts = { buffer = bufnr, remap = false }
 
@@ -99,7 +97,7 @@ return {
                     lua_ls = function()
                         local sourcing = "<Nop>"
 
-                        local lua_opts = {
+                        require("lspconfig").lua_ls.setup({
                             on_init = function(client)
                                 if client.workspace_folders[1].name:gsub("/$", "") == vim.fn.stdpath("config") .. "/lua" then
                                     local plugins = {}
@@ -124,9 +122,7 @@ return {
 
                                 vim.keymap.set("n", "<leader><leader>", sourcing, opts)
                             end
-                        }
-
-                        require("lspconfig").lua_ls.setup(lua_opts)
+                        })
                     end
                 }
             })
