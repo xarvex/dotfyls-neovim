@@ -85,6 +85,11 @@ return {
                 },
                 handlers = {
                     lsp_zero.default_setup,
+                    gopls = function()
+                        require("lspconfig").gopls.setup({
+                            settings = { gofumpt = true }
+                        })
+                    end,
                     clangd = function()
                         require("lspconfig").clangd.setup({
                             on_attach = function(_, bufnr)

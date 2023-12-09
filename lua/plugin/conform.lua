@@ -12,7 +12,7 @@ return {
     },
     opts = {
         formatters_by_ft = {
-            go = { "gofmt" },
+            go = { { "gofumpt", "goimports", "gofmt" } },
             javascript = { { "prettierd", "prettier" } },
             lua = { "stylua" }
         },
