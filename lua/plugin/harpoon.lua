@@ -14,5 +14,6 @@ end
 
 return {
     "ThePrimeagen/harpoon",
+    event = "BufLeave",
     keys = keys
 }
