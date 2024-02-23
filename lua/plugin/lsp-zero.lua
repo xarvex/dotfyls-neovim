@@ -72,6 +72,7 @@ return {
 
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    "rust_analyzer",
                     "gopls",
                     "clangd",
                     -- "java_language_server",
