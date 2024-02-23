@@ -76,6 +76,7 @@ return {
                     "clangd",
                     -- "java_language_server",
                     "kotlin_language_server",
+                    "denols",
                     "tsserver",
                     "eslint",
                     "lua_ls",
@@ -98,6 +99,18 @@ return {
                                 vim.keymap.set("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, opts)
                             end
                         })
+                    end,
+                    denols = function()
+                        local lsp = require("lspconfig")
+                        lsp.denols.setup({
+                            root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc")
+                        });
+                    end,
+                    tsserver = function()
+                        local lsp = require("lspconfig")
+                        lsp.tsserver.setup({
+                            root_dir = lsp.util.root_pattern("tsconfig.json")
+                        });
                     end,
                     lua_ls = function()
                         local sourcing = "<Nop>"
