@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
 vim.opt.mouse = nil
 for _, k in ipairs({
     "Up", "Down", "Right", "Left",
-    "Insert", "Home", "End", "PageUp", "PageDown",
+    "Insert", "Home", "End", "PageUp", "PageDown", "Delete",
     "kUp", "kDown", "kLeft", "kRight",
     "kHome", "kOrigin", "kPageUp", "kPageDown", "kDel"
 }) do
