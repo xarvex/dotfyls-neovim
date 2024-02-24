@@ -15,7 +15,7 @@ vim.keymap.set("v", "<C-J>", ":m 0<CR>gv=gv")
 vim.keymap.set("v", "<C-K>", ":m $<CR>gv=gv")
 
 -- yank into system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- paste without yanking current selection
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -32,24 +32,10 @@ vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
 -- removing the crutches
 vim.opt.mouse = nil
 for _, k in ipairs({
-    "Up",
-    "Down",
-    "Right",
-    "Left",
-    "Insert",
-    "Home",
-    "End",
-    "PageUp",
-    "PageDown",
-    "kUp",
-    "kDown",
-    "kLeft",
-    "kRight",
-    "kHome",
-    "kOrigin",
-    "kPageUp",
-    "kPageDown",
-    "kDel"
+    "Up", "Down", "Right", "Left",
+    "Insert", "Home", "End", "PageUp", "PageDown",
+    "kUp", "kDown", "kLeft", "kRight",
+    "kHome", "kOrigin", "kPageUp", "kPageDown", "kDel"
 }) do
     vim.keymap.set({ "n", "i", "v", "x" }, string.format("<%s>", k), "<Nop>")
     vim.keymap.set({ "n", "i", "v", "x" }, string.format("<C-%s>", k), "<Nop>")
