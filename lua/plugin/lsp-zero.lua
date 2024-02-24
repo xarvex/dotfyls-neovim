@@ -67,7 +67,7 @@ return {
                     opts)
                 vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = { border = "rounded" } }) end,
                     opts)
-                vim.keymap.set({ "n", "i" }, "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+                vim.keymap.set({ "n", "i" }, "<C-i>", function() vim.lsp.buf.signature_help() end, opts)
                 vim.keymap.set({ "n", "v" }, "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
                 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
             end)
