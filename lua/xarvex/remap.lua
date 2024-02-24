@@ -24,7 +24,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>=", "mzgg=G`z")
 
 -- set current file as executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod u+x %<CR>", { silent = true })
 
 -- source current buffer
 vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
