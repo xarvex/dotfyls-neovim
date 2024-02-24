@@ -11,8 +11,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- move a section of text to top or bottom
-vim.keymap.set("v", "<C-J>", ":m 0<CR>gv=gv")
-vim.keymap.set("v", "<C-K>", ":m $<CR>gv=gv")
+vim.keymap.set("v", "<C-J>", ":m $<CR>gv=gv")
+vim.keymap.set("v", "<C-K>", ":m 0<CR>gv=gv")
 
 -- yank into system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
