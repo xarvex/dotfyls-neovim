@@ -3,6 +3,27 @@ vim.g.mapleader = " "
 -- return to file exporer
 vim.keymap.set("n", "-", vim.cmd.Ex)
 
+-- better up/down (fixes problems with wrapped lines)
+vim.keymap.set({ "n", "v", "x" }, "j", "v:count || mode(1)[0:1] == 'no' ? 'j' : 'gj'", { expr = true })
+vim.keymap.set({ "n", "v", "x" }, "k", "v:count || mode(1)[0:1] == 'no' ? 'k' : 'gk'", { expr = true })
+vim.keymap.set({ "n", "v", "x" }, "<Down>", "v:count || mode(1)[0:1] == 'no' ? 'j' : 'gj'", { expr = true })
+vim.keymap.set({ "n", "v", "x" }, "<Up>", "v:count || mode(1)[0:1] == 'no' ? 'k' : 'gk'", { expr = true })
+
+-- navigate insert mode
+vim.keymap.set("i", "<C-h>", "<Left>")
+vim.keymap.set("i", "<C-l>", "<Right>")
+vim.keymap.set("i", "<C-j>", "<Down>")
+vim.keymap.set("i", "<C-k>", "<Up>")
+
+-- switch windows
+vim.keymap.set("n", "<A-h>", "<C-w>h")
+vim.keymap.set("n", "<A-l>", "<C-w>l")
+vim.keymap.set("n", "<A-j>", "<C-w>j")
+vim.keymap.set("n", "<A-k>", "<C-w>k")
+
+-- close window
+vim.keymap.set("n", "<C-c>", "<C-w>c")
+
 -- remove ending newline
 vim.keymap.set("n", "J", "mzJ`z")
 
