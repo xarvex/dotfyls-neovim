@@ -24,8 +24,6 @@ return {
         "AerialPrev",
         "AerialToggle"
     },
-    keys = {
-        { "<leader>o", vim.cmd.AerialToggle }
-    },
+    keys = { { "<leader>o", vim.cmd.AerialToggle } },
     config = true
 }
