@@ -81,6 +81,7 @@ return {
                     "tsserver",
                     "eslint",
                     "lua_ls",
+                    "pyright",
                     "bashls",
                     "html",
                     "cssls"
