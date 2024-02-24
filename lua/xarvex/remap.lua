@@ -20,13 +20,13 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- paste without yanking current selection
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- autoindent entire document
+-- autoindent entire buffer
 vim.keymap.set("n", "<leader>=", "mzgg=G`z")
 
--- set file as executable
+-- set current file as executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- source current file
+-- source current buffer
 vim.keymap.set("n", "<leader><leader>", vim.cmd.so)
 
 -- removing the crutches
