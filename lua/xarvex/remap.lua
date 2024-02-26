@@ -35,11 +35,14 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "<C-J>", ":m $<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "<C-K>", ":m 0<CR>gv=gv", { silent = true })
 
--- yank into system clipboard
+-- system clipboard operations
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
+vim.keymap.set("n", "<leader>p", [["+p]])
+vim.keymap.set("v", "<leader>p", [[c<Esc>"+p]])
 -- paste without yanking current selection
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<A-p>", [["_dP]])
 
 -- autoindent entire buffer
 vim.keymap.set("n", "<leader>=", "mzgg=G`z")
