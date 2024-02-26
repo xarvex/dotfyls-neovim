@@ -28,12 +28,12 @@ vim.keymap.set("n", "<C-c>", "<C-w>c")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- move a section of text up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- move a section of text to top or bottom
-vim.keymap.set("v", "<C-J>", ":m $<CR>gv=gv")
-vim.keymap.set("v", "<C-K>", ":m 0<CR>gv=gv")
+vim.keymap.set("v", "<C-J>", ":m $<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<C-K>", ":m 0<CR>gv=gv", { silent = true })
 
 -- yank into system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
