@@ -1,6 +1,15 @@
-local function fmt_nameless(name)
-    return name == "[No Name]" and "" or name
-end
+local filename_component = {
+    "filename",
+    newfile_status = true,
+    path = 1,
+    symbols = {
+        unnamed = "",
+        newfile = "",
+        modified = "●",
+        readonly = ""
+    },
+    fmt = function(name) return vim.fs.basename(name) == "" and "" or name end
+}
 
 return {
     "nvim-lualine/lualine.nvim",
@@ -13,7 +22,7 @@ return {
         },
         sections = {
             lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
-            lualine_b = { { "filename", fmt = fmt_nameless }, "branch" },
+            lualine_b = { filename_component, "branch" },
             lualine_c = { "diagnostics" },
             lualine_x = { "fileformat" },
             lualine_y = { "filetype", "progress" },
@@ -21,7 +30,7 @@ return {
         },
         inactive_sections = {
             lualine_a = {},
-            lualine_b = { { "filename", fmt = fmt_nameless } },
+            lualine_b = { filename_component },
             lualine_c = { "diagnostics" },
             lualine_x = {},
             lualine_y = {},
