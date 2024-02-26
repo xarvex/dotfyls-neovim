@@ -12,12 +12,12 @@ return {
             section_separators = { left = "", right = "" }
         },
         sections = {
-            lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+            lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
             lualine_b = { { "filename", fmt = fmt_nameless }, "branch" },
             lualine_c = { "diagnostics" },
             lualine_x = { "fileformat" },
             lualine_y = { "filetype", "progress" },
-            lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } }
+            lualine_z = { { "location", separator = { left = "", right = "" }, left_padding = 2 } }
         },
         inactive_sections = {
             lualine_a = {},
