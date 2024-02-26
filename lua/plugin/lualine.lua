@@ -16,7 +16,10 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         options = {
-            disabled_filetypes = { "help", "qf", "aerial", "noice" },
+            disabled_filetypes = {
+                "help", "qf",
+                "aerial", "diff", "fugitive", "noice", "undotree"
+            },
             component_separators = "|",
             section_separators = { left = "", right = "" }
         },
