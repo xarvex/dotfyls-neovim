@@ -22,7 +22,7 @@ return {
         inactive_sections = {
             lualine_a = {},
             lualine_b = { { "filename", fmt = fmt_nameless } },
-            lualine_c = {},
+            lualine_c = { "diagnostics" },
             lualine_x = {},
             lualine_y = {},
             lualine_z = { "location" }
