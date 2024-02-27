@@ -1,19 +1,22 @@
 local lazy_harpoon = require("lazy-load"):require("harpoon")
-local lazy_harpoon_ui = lazy_harpoon:require("ui")
 
 local keys = {
-    lazy_harpoon:keymap_require("n", "<leader>a", "mark", "add_file"),
-    lazy_harpoon_ui:keymap_require("n", "<leader>h", nil, "toggle_quick_menu")
+    lazy_harpoon:keymap_require("n", "<leader>a", nil, function(harpoon) harpoon:list():append() end),
+    lazy_harpoon:keymap_require("n", "<leader>h", nil, function(harpoon) harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 }
 
 for i = 1, 9 do
-    table.insert(keys, lazy_harpoon_ui:keymap_require(
-        "n", string.format("<leader>%s", i), nil, "nav_file", i
+    table.insert(keys, lazy_harpoon:keymap_require(
+    ---@diagnostic disable-next-line: redefined-local
+        "n", string.format("<leader>%s", i), nil, function(harpoon, i) harpoon:list():select(i) end, i
     ))
 end
 
 return {
     "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = "nvim-lua/plenary.nvim",
     event = "BufLeave",
-    keys = keys
+    keys = keys,
+    opts = { settings = { save_on_toggle = true } }
 }
