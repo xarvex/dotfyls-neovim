@@ -1,7 +1,8 @@
 vim.g.mapleader = " "
 
 -- return to file exporer
-vim.keymap.set("n", "-", "<cmd>Oil --float<CR>")
+vim.keymap.set("n", "-", vim.cmd.Oil)
+vim.keymap.set("n", "<leader>-", "<cmd>Oil --float<CR>")
 
 -- better up/down (fixes problems with wrapped lines)
 vim.keymap.set({ "n", "v", "x" }, "j", "v:count || mode(1)[0:1] == 'no' ? 'j' : 'gj'", { expr = true })
