@@ -146,6 +146,11 @@ return {
                                 vim.keymap.set("n", "<leader><leader>", sourcing, opts)
                             end
                         })
+                    end,
+                    bashls = function()
+                        require("lspconfig").bashls.setup({
+                            filetypes = { "bash", "sh", "zsh" }
+                        })
                     end
                 }
             })
