@@ -31,14 +31,24 @@ return {
             lsp_zero.extend_cmp()
 
             local cmp = require("cmp")
-            local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
             cmp.setup({
                 formatting = { format = require("lspkind").cmp_format() },
-                ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-                ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
-                ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-                ["<C-b>"] = cmp.mapping.complete()
+                mapping = {
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                    ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                    ["<CR>"] = cmp.mapping({
+                        i = function(fallback)
+                            if cmp.visible() and cmp.get_active_entry() then
+                                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                            else
+                                fallback()
+                            end
+                        end,
+                        s = cmp.mapping.confirm({ select = true }),
+                        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                    }),
+                }
             })
         end
     },
