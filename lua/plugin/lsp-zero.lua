@@ -43,7 +43,7 @@ return {
                             if cmp.visible() then
                                 if #cmp.get_entries() == 1 then
                                     opts = { select = true }
-                                elseif cmp.get_active_entry() then
+                                elseif cmp.get_selected_entry() then
                                     opts = { behavior = cmp.ConfirmBehavior.Replace, select = false }
                                 end
                             end
