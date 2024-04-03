@@ -39,8 +39,16 @@ return {
                     ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                     ["<CR>"] = cmp.mapping({
                         i = function(fallback)
-                            if cmp.visible() and cmp.get_active_entry() then
-                                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                            local opts
+                            if cmp.visible() then
+                                if #cmp.get_entries() == 1 then
+                                    opts = { select = true }
+                                elseif cmp.get_active_entry() then
+                                    opts = { behavior = cmp.ConfirmBehavior.Replace, select = false }
+                                end
+                            end
+                            if opts then
+                                cmp.confirm(opts)
                             else
                                 fallback()
                             end
