@@ -33,6 +33,7 @@ return {
             local cmp = require("cmp")
 
             cmp.setup({
+                entries = { name = "custom", selection_order = "near_cursor" },
                 formatting = { format = require("lspkind").cmp_format() },
                 mapping = {
                     ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
