@@ -25,7 +25,7 @@ return {
             "L3MON4D3/LuaSnip",
             "onsails/lspkind.nvim"
         },
-        event = { "InsertEnter", "CmdlineEnter" },
+        event = { "CmdlineEnter", "InsertEnter" },
         config = function()
             local lsp_zero = require("lsp-zero")
             lsp_zero.extend_cmp()
@@ -41,21 +41,19 @@ return {
                     ["<CR>"] = cmp.mapping({
                         i = function(fallback)
                             local opts
+
                             if cmp.visible() then
                                 if #cmp.get_entries() == 1 then
                                     opts = { select = true }
                                 elseif cmp.get_selected_entry() then
-                                    opts = { behavior = cmp.ConfirmBehavior.Replace, select = false }
+                                    opts = { select = false, behavior = cmp.ConfirmBehavior.Replace }
                                 end
                             end
-                            if opts then
-                                cmp.confirm(opts)
-                            else
-                                fallback()
-                            end
+
+                            if opts then cmp.confirm(opts) else fallback() end
                         end,
                         s = cmp.mapping.confirm({ select = true }),
-                        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                        c = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
                     }),
                 }
             })
