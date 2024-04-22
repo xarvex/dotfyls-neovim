@@ -7,10 +7,10 @@ return {
         },
         opts = {
             themes = {
-                "oxocarbon",
                 "carbonfox",
-                "tokyonight",
-                "rose-pine"
+                "oxocarbon",
+                "rose-pine",
+                "tokyonight"
             },
             themeConfigFile = vim.fn.stdpath("config") .. "/lua/generated/theme.lua"
         }
@@ -24,7 +24,6 @@ return {
             dark_variant = "main",
             disable_background = true,
             disable_float_background = true,
-            disable_italics = true,
             styles = { transparent = true }
         }
     },
@@ -45,7 +44,6 @@ return {
             transparent = true,
             terminal_colors = true,
             styles = {
-                keywords = { italic = false },
                 sidebars = "transparent",
                 floats = "transparent"
             },
