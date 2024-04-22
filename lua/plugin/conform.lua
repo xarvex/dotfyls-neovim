@@ -14,7 +14,13 @@ return {
         formatters_by_ft = {
             go = { { "gofumpt", "goimports", "gofmt" } },
             javascript = { { "prettierd", "prettier" } },
-            lua = { "stylua" }
+            lua = { "stylua" },
+            sql = { "sql_formatter" }
+        },
+        formatters = {
+            sql_formatter = {
+                args = { "-c", vim.env.XDG_CONFIG_HOME .. "/sql-formatter/config.json" }
+            }
         },
         format_on_save = { lsp_fallback = true }
     }
