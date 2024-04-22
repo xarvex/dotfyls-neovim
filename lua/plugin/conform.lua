@@ -22,6 +22,6 @@ return {
                 args = { "-c", vim.env.XDG_CONFIG_HOME .. "/sql-formatter/config.json" }
             }
         },
-        format_on_save = { lsp_fallback = true }
+        format_after_save = { lsp_fallback = true }
     }
 }
