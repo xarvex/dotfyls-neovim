@@ -1,3 +1,5 @@
+local keymap = require("shortcut").keymap
+
 return {
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -7,7 +9,7 @@ return {
             vim.g.lsp_zero_extend_cmp = 0
             vim.g.lsp_zero_extend_lspconfig = 0
 
-            vim.keymap.set("n", "<leader><leader>", "<Nop>")
+            keymap("n", "<leader><leader>", "<Nop>")
         end,
         config = false
     },
@@ -74,23 +76,23 @@ return {
             lsp_zero.on_attach(function(_, bufnr)
                 local opts = { buffer = bufnr, remap = false }
 
-                vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = { border = "rounded" } }) end,
+                keymap("n", "[d", function() vim.diagnostic.goto_prev({ float = { border = "rounded" } }) end,
                     opts)
-                vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = { border = "rounded" } }) end,
+                keymap("n", "]d", function() vim.diagnostic.goto_next({ float = { border = "rounded" } }) end,
                     opts)
 
-                vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-                vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-                vim.keymap.set("n", "gT", function() vim.lsp.buf.type_definition() end, opts)
-                vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-                vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+                keymap("n", "gd", function() vim.lsp.buf.definition() end, opts)
+                keymap("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+                keymap("n", "gT", function() vim.lsp.buf.type_definition() end, opts)
+                keymap("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+                keymap("n", "gr", function() vim.lsp.buf.references() end, opts)
 
-                vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-                vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts)
-                vim.keymap.set({ "n", "i" }, "<C-u>", function() vim.lsp.buf.signature_help() end, opts)
+                keymap("n", "K", function() vim.lsp.buf.hover() end, opts)
+                keymap("n", "<leader>d", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts)
+                keymap({ "n", "i" }, "<C-;>", function() vim.lsp.buf.signature_help() end, opts)
 
-                vim.keymap.set({ "n", "v" }, "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-                vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+                keymap({ "n", "v" }, "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+                keymap("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
             end)
 
             require("mason-lspconfig").setup({
@@ -121,7 +123,7 @@ return {
                             on_attach = function(_, bufnr)
                                 local opts = { buffer = bufnr, remap = false }
 
-                                vim.keymap.set("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, opts)
+                                keymap("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, opts)
                             end
                         })
                     end,
@@ -164,7 +166,7 @@ return {
                             on_attach = function(_, bufnr)
                                 local opts = { buffer = bufnr, remap = false }
 
-                                vim.keymap.set("n", "<leader><leader>", sourcing, opts)
+                                keymap("n", "<leader><leader>", sourcing, opts)
                             end
                         })
                     end,

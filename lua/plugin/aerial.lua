@@ -2,8 +2,10 @@
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LazyLoad", { clear = true }),
     callback = function()
-        vim.keymap.set("n", "{", vim.cmd.AerialPrev, { buffer = 0 })
-        vim.keymap.set("n", "}", vim.cmd.AerialNext, { buffer = 0 })
+        local keymap = require("shortcut").keymap
+
+        keymap("n", "{", vim.cmd.AerialPrev, { buffer = 0 })
+        keymap("n", "}", vim.cmd.AerialNext, { buffer = 0 })
     end
 })
 

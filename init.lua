@@ -1,4 +1,4 @@
-require("xarvex")
+require("config")
 
 -- use lazy.nvim as plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -23,4 +23,4 @@ require("lazy").setup({
     },
     { import = "plugin" }                           -- load other plugins after
 })
-vim.keymap.set("n", "<C-A-l>", vim.cmd.Lazy)
+require("shortcut").keymap("n", "<C-A-l>", vim.cmd.Lazy)
