@@ -1,10 +1,13 @@
 local generate = require("generate")
+local shortcut = require("shortcut")
 
-if not require("shortcut").filereadable(generate.path("themery.lua")) then
-    generate.writefile({
+local themery = generate.path("themery.lua")
+
+if not shortcut.filereadable(themery) then
+    shortcut.writefile({
         "-- Themery block",
         "-- end themery block"
-    }, "themery.lua", "")
+    }, themery, "")
 end
 
 return {
@@ -21,7 +24,7 @@ return {
                 "rose-pine",
                 "tokyonight"
             },
-            themeConfigFile = generate.path("themery.lua")
+            themeConfigFile = themery
         }
     },
     {
