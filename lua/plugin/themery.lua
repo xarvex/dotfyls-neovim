@@ -25,18 +25,6 @@ return {
         }
     },
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        lazy = true,
-        opts = {
-            variant = "main",
-            dark_variant = "main",
-            disable_background = true,
-            disable_float_background = true,
-            styles = { transparent = true }
-        }
-    },
-    {
         "EdenEast/nightfox.nvim",
         lazy = true,
         init = function()
@@ -47,6 +35,18 @@ return {
     {
         "nyoom-engineering/oxocarbon.nvim",
         lazy = true
+    },
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        lazy = true,
+        opts = {
+            variant = "main",
+            dark_variant = "main",
+            disable_background = true,
+            disable_float_background = true,
+            styles = { transparent = true }
+        }
     },
     {
         "folke/tokyonight.nvim",
