@@ -21,7 +21,7 @@ return {
                 "rose-pine",
                 "tokyonight"
             },
-            themeConfigFile = vim.fn.stdpath("config") .. "/lua/generated/theme.lua"
+            themeConfigFile = generate.path("themery.lua")
         }
     },
     {
