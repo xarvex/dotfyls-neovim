@@ -16,7 +16,7 @@ return {
         },
         opts = {
             themes = {
-                "carbonfox",
+                "duskfox", "carbonfox",
                 "oxocarbon",
                 "rose-pine",
                 "tokyonight"
