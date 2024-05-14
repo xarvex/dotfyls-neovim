@@ -1,3 +1,12 @@
+local generate = require("generate")
+
+if not require("shortcut").filereadable(generate.path("themery.lua")) then
+    generate.writefile({
+        "-- Themery block",
+        "-- end themery block"
+    }, "themery.lua", "")
+end
+
 return {
     {
         "zaldih/themery.nvim",
@@ -30,6 +39,9 @@ return {
     {
         "EdenEast/nightfox.nvim",
         lazy = true,
+        init = function()
+            vim.cmd.colorscheme("carbonfox") -- default colorscheme
+        end,
         opts = { options = { transparent = true } }
     },
     {

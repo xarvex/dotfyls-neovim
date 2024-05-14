@@ -14,19 +14,6 @@ if vim.fn.isdirectory(lazypath) == 0 then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local generatedpath = vim.fn.stdpath("config") .. "/lua/generated"
-local generatedtheme = generatedpath .. "/theme.lua"
-if vim.fn.filereadable(generatedtheme) == 0 then
-    if vim.fn.isdirectory(generatedpath) == 0 then
-        vim.fn.mkdir(generatedpath, "p")
-    end
-    vim.fn.writefile({
-        "-- Themery block",
-        "-- This block will be replaced by Themery.",
-        "-- end themery block"
-    }, generatedtheme, "b")
-end
-
 local branch = vim.env.USER == "xarvex" and "main" or "0.1.x"
 require("lazy").setup({
     {
