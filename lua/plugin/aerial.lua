@@ -1,6 +1,6 @@
 -- I should look into making this part of my plugin
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("lazy_load", { clear = true }),
+    group = vim.api.nvim_create_augroup("LazyLoad", { clear = true }),
     callback = function()
         local keymap = require("shortcut").keymap
 
