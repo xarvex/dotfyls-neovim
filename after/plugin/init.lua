@@ -12,10 +12,10 @@ if vim.fn.isdirectory(wezterm) then
 
     -- only register once in UI
     vim.api.nvim_create_autocmd("UIEnter", {
-        group = vim.api.nvim_create_augroup("WezTermColorscheme"),
+        group = vim.api.nvim_create_augroup("WezTermColorscheme", {}),
         callback = function()
             vim.api.nvim_create_autocmd("ColorScheme", {
-                group = vim.api.nvim_create_augroup("WezTermColorscheme"),
+                group = vim.api.nvim_create_augroup("WezTermColorscheme", {}),
                 callback = function(args)
                     local colorscheme = wezterm_colorschemes[args.match]
                     if colorscheme then
