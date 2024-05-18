@@ -1,7 +1,7 @@
 local lazy_harpoon = require("lazy-load"):require("harpoon")
 
 local keys = {
-    lazy_harpoon:keymap_require("n", "<leader>a", nil, function(harpoon) harpoon:list():append() end),
+    lazy_harpoon:keymap_require("n", "<leader>a", nil, function(harpoon) harpoon:list():add() end),
     lazy_harpoon:keymap_require("n", "<leader>h", nil, function(harpoon) harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 }
 
