@@ -7,8 +7,7 @@ local keys = {
 
 for i = 1, 9 do
     table.insert(keys, lazy_harpoon:keymap_require(
-    ---@diagnostic disable-next-line: redefined-local
-        "n", string.format("<leader>%s", i), nil, function(harpoon, i) harpoon:list():select(i) end, i
+        "n", string.format("<leader>%s", i), nil, function(harpoon) harpoon:list():select(i) end
     ))
 end
 
