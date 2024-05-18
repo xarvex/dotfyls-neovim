@@ -9,15 +9,22 @@ if vim.fn.isdirectory(wezterm) then
         ["oxocarbon"] = "Oxocarbon Dark (Gogh)",
         ["rose-pine"] = true
     }
-    vim.api.nvim_create_autocmd("ColorScheme", {
+
+    -- only register once in UI
+    vim.api.nvim_create_autocmd("UIEnter", {
         group = vim.api.nvim_create_augroup("wezterm_colorscheme", { clear = true }),
-        callback = function(args)
-            local colorscheme = wezterm_colorschemes[args.match]
-            if colorscheme then
-                if type(colorscheme) ~= "string" then colorscheme = args.match end
-                writefile({ colorscheme }, wezterm .. "/generated_neovim_colorscheme", "")
-                vim.notify("Setting WezTerm colorscheme to " .. colorscheme, vim.log.levels.INFO)
-            end
+        callback = function()
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                group = vim.api.nvim_create_augroup("wezterm_colorscheme", { clear = true }),
+                callback = function(args)
+                    local colorscheme = wezterm_colorschemes[args.match]
+                    if colorscheme then
+                        if type(colorscheme) ~= "string" then colorscheme = args.match end
+                        writefile({ colorscheme }, wezterm .. "/generated_neovim_colorscheme", "")
+                        vim.notify("Setting WezTerm colorscheme to " .. colorscheme, vim.log.levels.INFO)
+                    end
+                end
+            })
         end
     })
 end
