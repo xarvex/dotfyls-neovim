@@ -17,8 +17,8 @@ return {
     opts = {
         options = {
             disabled_filetypes = {
-                "help", "qf",
-                "aerial", "diff", "fugitive", "noice", "undotree"
+                "diff", "help", "qf",
+                "aerial", "fugitive", "noice", "undotree"
             },
             component_separators = "|",
             section_separators = { left = "", right = "" }
