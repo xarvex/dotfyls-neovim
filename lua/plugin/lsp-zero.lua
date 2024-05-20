@@ -1,5 +1,3 @@
-local keymap = require("shortcut").keymap
-
 return {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
@@ -8,8 +6,6 @@ return {
         vim.g.lsp_zero_extend_cmp = 0
         vim.g.lsp_zero_extend_lspconfig = 0
         vim.g.lsp_zero_ui_float_border = 0
-
-        keymap("n", "<leader><leader>", "<Nop>")
     end,
     config = false
 }
