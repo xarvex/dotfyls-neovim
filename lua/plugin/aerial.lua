@@ -4,8 +4,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function()
         local keymap = require("shortcut").keymap
 
-        keymap("n", "{", vim.cmd.AerialPrev, { buffer = 0 })
-        keymap("n", "}", vim.cmd.AerialNext, { buffer = 0 })
+        keymap("n", "{", vim.cmd.AerialPrev, { buffer = true })
+        keymap("n", "}", vim.cmd.AerialNext, { buffer = true })
     end
 })
 
