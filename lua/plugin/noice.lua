@@ -3,7 +3,14 @@ return {
         "folke/noice.nvim",
         dependencies = {
             "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify"
+            {
+                "rcarriga/nvim-notify",
+                opts = {
+                    background_colour = "#000000",
+                    render = "wrapped-compact",
+                    stages = "fade"
+                }
+            }
         },
         event = "VeryLazy",
         opts = {
@@ -33,15 +40,5 @@ return {
                 },
             }
         }
-    },
-    {
-        "rcarriga/nvim-notify",
-        lazy = true,
-        opts = {
-            background_colour = "#000000",
-            render = "wrapped-compact",
-            stages = "fade"
-        }
     }
-
 }
