@@ -20,7 +20,7 @@ return {
                 override = {
                     ["cmp.entry.get_documentation"] = true,
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true
+                    ["vim.lsp.util.stylize_markdown"] = true -- requires hrsh7th/nvim-cmp
                 }
             },
             presets = {
