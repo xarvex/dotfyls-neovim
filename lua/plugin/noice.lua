@@ -15,8 +15,6 @@ return {
         event = "VeryLazy",
         opts = {
             lsp = {
-                hover = { enabled = false },
-                signature = { enabled = false },
                 override = {
                     ["cmp.entry.get_documentation"] = true,
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
