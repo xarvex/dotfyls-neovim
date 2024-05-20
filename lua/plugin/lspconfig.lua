@@ -77,35 +77,8 @@ return {
                     })
                 end,
                 lua_ls = function()
-                    local sourcing = "<Nop>"
-
-                    require("lspconfig").lua_ls.setup({
-                        on_init = function(client)
-                            local path = client.workspace_folders[1].name
-                            if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-                                local plugins = {}
-                                for token in string.gmatch(vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/*"), "[^\r\n]+") do
-                                    table.insert(plugins, token)
-                                end
-
-                                sourcing = vim.cmd.so
-
-                                client.config = vim.tbl_deep_extend("force", client.config, lsp_zero.nvim_lua_ls())
-                                client.config.settings.Lua.workspace.library = plugins
-
-                                client.notify("workspace/didChangeConfiguration", {
-                                    settings = client.config.settings
-                                })
-                            end
-
-                            return true
-                        end,
-                        on_attach = function(_, bufnr)
-                            local opts = { buffer = bufnr, remap = false }
-
-                            keymap("n", "<leader><leader>", sourcing, opts)
-                        end
-                    })
+                    require("neodev")
+                    require("lspconfig").lua_ls.setup({})
                 end,
                 bashls = function()
                     require("lspconfig").bashls.setup({
