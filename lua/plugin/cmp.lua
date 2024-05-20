@@ -1,16 +1,22 @@
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {
-        "L3MON4D3/LuaSnip",
-        "onsails/lspkind.nvim"
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-path",
+        { "L3MON4D3/LuaSnip", dependencies = "saadparwaiz1/cmp_luasnip" },
+        "onsails/lspkind.nvim",
+        "rafamadriz/friendly-snippets",
+        "saadparwaiz1/cmp_luasnip"
     },
     event = { "CmdlineEnter", "InsertEnter" },
     config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+
         local lsp_zero = require("lsp-zero")
         lsp_zero.extend_cmp()
 
         local cmp = require("cmp")
-
         cmp.setup({
             entries = { name = "custom", selection_order = "near_cursor" },
             formatting = { format = require("lspkind").cmp_format() },
