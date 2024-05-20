@@ -15,9 +15,9 @@ return {
     opts = {
         lsp = {
             override = {
-                ["cmp.entry.get_documentation"] = true,
+                ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                ["vim.lsp.util.stylize_markdown"] = true -- requires hrsh7th/nvim-cmp
+                ["vim.lsp.util.stylize_markdown"] = true
             }
         },
         presets = {
