@@ -57,6 +57,3 @@ keymap("n", "<leader>=", "mzgg=G`z")
 
 -- set current file as executable
 keymap("n", "<leader>x", "<cmd>!chmod u+x %<CR>", { silent = true })
-
--- source current buffer
-keymap("n", "<leader><leader>", vim.cmd.so)
