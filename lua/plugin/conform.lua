@@ -1,7 +1,7 @@
 return {
     "stevearc/conform.nvim",
     cmd = "ConformInfo",
-    event = "BufWritePre",
+    event = "User BufWritePreFiltered",
     keys = {
         {
             "<leader>fm",

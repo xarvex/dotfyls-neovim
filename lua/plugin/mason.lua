@@ -1,8 +1,16 @@
 return {
     "williamboman/mason.nvim",
-    lazy = false,
+    cmd = {
+        "Mason",
+        "MasonInstall",
+        "MasonLog",
+        "MasonUninstall",
+        "MasonUninstallAll",
+        "MasonUpdate"
+    },
     keys = {
         { "<C-A-m>", vim.cmd.Mason }
     },
+    build = ":MasonUpdate",
     config = true
 }

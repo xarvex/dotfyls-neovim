@@ -7,7 +7,7 @@ return {
         "williamboman/mason-lspconfig.nvim"
     },
     cmd = { "LspInfo", "LspInstall", "LspStart" },
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
     config = function()
         local lsp_zero = require("lsp-zero")
         lsp_zero.extend_lspconfig()
