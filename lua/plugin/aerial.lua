@@ -28,5 +28,5 @@ return {
             end
         })
     end,
-    config = true
+    opts = {}
 }

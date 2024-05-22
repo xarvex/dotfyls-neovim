@@ -3,5 +3,5 @@ return {
     main = "ibl",
     tag = "v3.5.0", -- last version to support Neovim 0.9.x
     event = "LspAttach",
-    config = true
+    opts = {}
 }

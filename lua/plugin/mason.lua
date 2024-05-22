@@ -12,5 +12,5 @@ return {
         { "<C-A-m>", vim.cmd.Mason }
     },
     build = ":MasonUpdate",
-    config = true
+    opts = {}
 }
