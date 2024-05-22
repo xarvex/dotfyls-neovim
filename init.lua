@@ -14,15 +14,15 @@ if vim.fn.isdirectory(lazypath) == 0 then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local branch = vim.env.USER == "xarvex" and "main" or "0.1.x"
 require("lazy").setup({
-    {
-        "https://gitlab.com/xarvex/lazy-load.nvim", -- hey I made this
-        branch = branch,
-        lazy = true                                 -- only load once required
-    },
-    { import = "plugin" }                           -- load other plugins after
+    -- lazy-load.nvim must be declared first to be able to use in config
+    { "https://gitlab.com/xarvex/lazy-load.nvim", branch = "0.1.x", lazy = true },
+    { import = "plugin" } -- load other plugins after
 }, {
+    dev = {
+        path = vim.env.DOTFYLS_PROJECTS_DIR or
+            vim.fs.joinpath(vim.env.XDG_DOCUMENTS_DIR or vim.fs.joinpath(assert(vim.env.HOME), "Documents"), "Projects")
+    },
     performance = {
         rtp = {
             disabled_plugins = {
