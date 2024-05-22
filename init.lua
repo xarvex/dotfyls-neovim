@@ -22,5 +22,19 @@ require("lazy").setup({
         lazy = true                                 -- only load once required
     },
     { import = "plugin" }                           -- load other plugins after
+}, {
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "editorconfig",
+                "netrwPlugin",
+                "osc52",
+                "rplugin",
+                "spellfile",
+                "tohtml",
+                "tutor"
+            }
+        }
+    }
 })
 require("shortcut").keymap("n", "<C-A-l>", vim.cmd.Lazy)
