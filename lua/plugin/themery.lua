@@ -1,14 +1,4 @@
-local generate = require("generate")
-local shortcut = require("shortcut")
-
-local themery = generate.path("themery.lua")
-
-if not shortcut.filereadable(themery) then
-    shortcut.writefile({
-        "-- Themery block",
-        "-- end themery block"
-    }, themery, "")
-end
+local themery = require("generate").path("themery.lua")
 
 return {
     {
@@ -17,6 +7,16 @@ return {
         keys = {
             { "<C-A-t>", vim.cmd.Themery }
         },
+        init = function()
+            local shortcut = require("shortcut")
+
+            if not shortcut.filereadable(themery) then
+                shortcut.writefile({
+                    "-- Themery block",
+                    "-- end themery block"
+                }, themery, "")
+            end
+        end,
         opts = {
             themes = {
                 "duskfox", "carbonfox",
