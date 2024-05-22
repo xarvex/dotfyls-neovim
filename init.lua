@@ -1,7 +1,7 @@
 require("config")
 
 -- use lazy.nvim as plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
 if vim.fn.isdirectory(lazypath) == 0 then
     vim.fn.system({
         "git",

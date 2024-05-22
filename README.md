@@ -12,7 +12,7 @@ I really enjoy lazy loading. Everything is lazy loaded if possible.
 
 ## Prerequisites
 
-- [Neovim]
+- [Neovim] >= 0.10.0
 - [Node](https://nodejs.org)
 - [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
 - [sharkdp/fd](https://github.com/sharkdp/fd) (mostly optional)

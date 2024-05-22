@@ -1,9 +1,9 @@
 local M = {}
 
-local generated = vim.fn.stdpath("config") .. "/lua/generated"
+local generated = vim.fs.joinpath(vim.fn.stdpath("config"), "lua/generated")
 
 M.path = function(fname)
-    return generated .. "/" .. fname
+    return vim.fs.joinpath(generated, fname)
 end
 
 return M
