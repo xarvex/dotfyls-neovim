@@ -1,5 +1,11 @@
 return {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = { max_count = 4 }
+    event = "VeryLazy",
+    config = function()
+        local hardtime = require("hardtime")
+
+        hardtime.setup({ max_count = 4 })
+        hardtime.enable()
+    end
 }
