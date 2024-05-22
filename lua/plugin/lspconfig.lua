@@ -13,7 +13,7 @@ return {
         lsp_zero.extend_lspconfig()
 
         lsp_zero.on_attach(function(_, bufnr)
-            local opts = { buffer = bufnr, remap = false }
+            local opts = { buffer = bufnr }
 
             keymap("n", "[d", function() vim.diagnostic.goto_prev({ float = { border = "rounded" } }) end, opts)
             keymap("n", "]d", function() vim.diagnostic.goto_next({ float = { border = "rounded" } }) end, opts)
@@ -58,9 +58,7 @@ return {
                 clangd = function()
                     require("lspconfig").clangd.setup({
                         on_attach = function(_, bufnr)
-                            local opts = { buffer = bufnr, remap = false }
-
-                            keymap("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, opts)
+                            keymap("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, { buffer = bufnr })
                         end
                     })
                 end,
