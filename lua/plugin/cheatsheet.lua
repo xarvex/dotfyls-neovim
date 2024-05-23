@@ -1,9 +1,9 @@
 return {
     "doctorfree/cheatsheet.nvim",
     dependencies = {
-        "nvim-telescope/telescope.nvim",
         "nvim-lua/popup.nvim",
-        "nvim-lua/plenary.nvim"
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
     },
     cmd = { "Cheatsheet", "CheatsheetEdit" },
     keys = {
