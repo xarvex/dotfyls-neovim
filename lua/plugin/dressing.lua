@@ -10,7 +10,6 @@ return {
         end
         vim.ui.input = function(...)
             lazy_dressing:load()
-            print("hi")
             vim.ui.input(...)
         end
     end
