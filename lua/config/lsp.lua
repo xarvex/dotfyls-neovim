@@ -4,8 +4,10 @@ vim.api.nvim_create_autocmd("Lspattach", {
     callback = function(args)
         local opts = { buffer = args.buf }
 
-        keymap("n", "[d", function() vim.diagnostic.goto_prev({ float = { border = "rounded" } }) end, opts)
-        keymap("n", "]d", function() vim.diagnostic.goto_next({ float = { border = "rounded" } }) end, opts)
+        local float = { border = "rounded" }
+        keymap("n", "<leader>d", function() vim.diagnostic.open_float(float) end, opts)
+        keymap("n", "[d", function() vim.diagnostic.goto_prev({ float = float }) end, opts)
+        keymap("n", "]d", function() vim.diagnostic.goto_next({ float = float }) end, opts)
 
         keymap("n", "gd", function() vim.lsp.buf.definition() end, opts)
         keymap("n", "gD", function() vim.lsp.buf.declaration() end, opts)
@@ -14,7 +16,6 @@ vim.api.nvim_create_autocmd("Lspattach", {
         keymap("n", "gr", function() vim.lsp.buf.references() end, opts)
 
         keymap("n", "K", function() vim.lsp.buf.hover() end, opts)
-        keymap("n", "<leader>d", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts)
         keymap({ "n", "i" }, "<C-;>", function() vim.lsp.buf.signature_help() end, opts)
 
         keymap({ "n", "v" }, "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
