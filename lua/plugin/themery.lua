@@ -15,6 +15,7 @@ return {
                 "-- end themery block"
             }, themery, "")
         end
+        pcall(require, "generated.themery") -- not guaranteed to exist
     end,
     opts = {
         themes = {
