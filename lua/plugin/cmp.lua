@@ -39,7 +39,7 @@ return {
                     end,
                     s = cmp.mapping.confirm({ select = true }),
                     c = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-                }),
+                })
             }
         })
     end
