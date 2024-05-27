@@ -21,8 +21,8 @@ return {
             entries = { name = "custom", selection_order = "near_cursor" },
             formatting = { format = require("lspkind").cmp_format() },
             mapping = {
-                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-                ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<CR>"] = cmp.mapping({
                     i = function(fallback)
                         local opts
