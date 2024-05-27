@@ -40,6 +40,17 @@ return {
                     s = cmp.mapping.confirm({ select = true }),
                     c = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
                 })
+            },
+            sources = {
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "path" },
+                { name = "buffer" }
+            },
+            snippet = {
+                expand = function(args)
+                    require("luasnip").lsp_expand(args.body)
+                end
             }
         })
     end
