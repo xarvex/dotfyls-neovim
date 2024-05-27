@@ -21,11 +21,9 @@ vim.api.nvim_create_autocmd("Lspattach", {
         keymap("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client ~= nil and client.server_capabilities.inlayHintProvider then
-            keymap("n", "<leader>i", function()
-                local filter = { bufnr = args.buf }
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
-            end, opts)
-        end
+        keymap("n", "<leader>i", client ~= nil and client.server_capabilities.inlayHintProvider and function()
+            local filter = { bufnr = args.buf }
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
+        end or "<Nop>", opts)
     end
 })
