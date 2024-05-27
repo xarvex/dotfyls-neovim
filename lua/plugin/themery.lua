@@ -7,10 +7,8 @@ return {
         { "<C-A-t>", vim.cmd.Themery }
     },
     init = function()
-        local shortcut = require("shortcut")
-
-        if not shortcut.filereadable(themery) then
-            shortcut.writefile({
+        if not require("shortcut").filereadable(themery) then
+            require("shortcut").writefile({
                 "-- Themery block",
                 "-- end themery block"
             }, themery, "")

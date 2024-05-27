@@ -3,9 +3,7 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
     config = function()
-        local hardtime = require("hardtime")
-
-        hardtime.setup({ max_count = 4 })
-        hardtime.enable()
+        require("hardtime").setup({ max_count = 4 })
+        require("hardtime").enable()
     end
 }

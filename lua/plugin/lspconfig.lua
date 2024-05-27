@@ -1,5 +1,3 @@
-local keymap = require("shortcut").keymap
-
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -9,9 +7,9 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
     config = function()
-        local lsp_zero = require("lsp-zero")
-        lsp_zero.extend_lspconfig()
+        require("lsp-zero").extend_lspconfig()
 
+        local keymap = require("shortcut").keymap
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "rust_analyzer",
@@ -29,7 +27,7 @@ return {
                 "cssls"
             },
             handlers = {
-                lsp_zero.default_setup,
+                require("lsp-zero").default_setup,
                 gopls = function()
                     require("lspconfig").gopls.setup({
                         settings = { gofumpt = true }
@@ -43,15 +41,13 @@ return {
                     })
                 end,
                 denols = function()
-                    local lsp = require("lspconfig")
-                    lsp.denols.setup({
-                        root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc")
+                    require("lspconfig").denols.setup({
+                        root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")
                     })
                 end,
                 tsserver = function()
-                    local lsp = require("lspconfig")
-                    lsp.tsserver.setup({
-                        root_dir = lsp.util.root_pattern("tsconfig.json")
+                    require("lspconfig").tsserver.setup({
+                        root_dir = require("lspconfig").util.root_pattern("tsconfig.json")
                     })
                 end,
                 lua_ls = function()

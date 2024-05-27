@@ -13,32 +13,33 @@ return {
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
 
-        local lsp_zero = require("lsp-zero")
-        lsp_zero.extend_cmp()
+        require("lsp-zero").extend_cmp()
 
-        local cmp = require("cmp")
-        cmp.setup({
+        require("cmp").setup({
             entries = { name = "custom", selection_order = "near_cursor" },
             formatting = { format = require("lspkind").cmp_format() },
             mapping = {
-                ["<C-k>"] = cmp.mapping.select_prev_item(),
-                ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<CR>"] = cmp.mapping({
+                ["<C-k>"] = require("cmp").mapping.select_prev_item(),
+                ["<C-j>"] = require("cmp").mapping.select_next_item(),
+                ["<CR>"] = require("cmp").mapping({
                     i = function(fallback)
                         local opts
 
-                        if cmp.visible() then
-                            if #cmp.get_entries() == 1 then
+                        if require("cmp").visible() then
+                            if #require("cmp").get_entries() == 1 then
                                 opts = { select = true }
-                            elseif cmp.get_selected_entry() then
-                                opts = { select = false, behavior = cmp.ConfirmBehavior.Replace }
+                            elseif require("cmp").get_selected_entry() then
+                                opts = { select = false, behavior = require("cmp").ConfirmBehavior.Replace }
                             end
                         end
 
-                        if opts then cmp.confirm(opts) else fallback() end
+                        if opts then require("cmp").confirm(opts) else fallback() end
                     end,
-                    s = cmp.mapping.confirm({ select = true }),
-                    c = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+                    s = require("cmp").mapping.confirm({ select = true }),
+                    c = require("cmp").mapping.confirm({
+                        select = true,
+                        behavior = require("cmp").ConfirmBehavior.Replace
+                    })
                 })
             },
             sources = {
