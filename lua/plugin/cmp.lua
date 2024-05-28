@@ -46,7 +46,7 @@ return {
                 { name = "nvim_lsp" },
                 { name = "luasnip" }
             }, {
-                { name = "buffer" }
+                { name = "buffer", keyword_length = 3 }
             }),
             snippet = {
                 expand = function(args)
@@ -56,14 +56,14 @@ return {
         })
         require("cmp").setup.cmdline({ "/", "?" }, {
             mapping = mapping,
-            sources = { { name = "buffer" } }
+            sources = { { name = "buffer", keyword_length = 3 } }
         })
         require("cmp").setup.cmdline(":", {
             mapping = mapping,
             sources = require("cmp").config.sources({
-                { name = "path" }
+                { name = "path", keyword_length = 3 }
             }, {
-                { name = "cmdline" }
+                { name = "cmdline", keyword_length = 3 }
             }),
             matching = { disallow_symbol_nonprefix_matching = false }
         })
