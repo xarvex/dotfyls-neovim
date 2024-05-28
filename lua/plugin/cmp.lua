@@ -2,6 +2,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
         "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "L3MON4D3/LuaSnip",
@@ -15,44 +16,56 @@ return {
 
         require("lsp-zero").extend_cmp()
 
+        local function fallback_confirm(fallback)
+            local opts
+
+            if require("cmp").visible() then
+                if #require("cmp").get_entries() == 1 then
+                    opts = { select = true }
+                elseif require("cmp").get_selected_entry() then
+                    opts = { select = false, behavior = require("cmp").ConfirmBehavior.Replace }
+                end
+            end
+
+            if opts then require("cmp").confirm(opts) else fallback() end
+        end
+        local mapping = {
+            ["<C-k>"] = require("cmp").mapping(require("cmp").mapping.select_prev_item(), { "i", "c" }),
+            ["<C-j>"] = require("cmp").mapping(require("cmp").mapping.select_next_item(), { "i", "c" }),
+            ["<CR>"] = require("cmp").mapping({
+                i = fallback_confirm,
+                c = fallback_confirm,
+                s = require("cmp").mapping.confirm({ select = true }),
+            })
+        }
         require("cmp").setup({
             entries = { name = "custom", selection_order = "near_cursor" },
             formatting = { format = require("lspkind").cmp_format() },
-            mapping = {
-                ["<C-k>"] = require("cmp").mapping.select_prev_item(),
-                ["<C-j>"] = require("cmp").mapping.select_next_item(),
-                ["<CR>"] = require("cmp").mapping({
-                    i = function(fallback)
-                        local opts
-
-                        if require("cmp").visible() then
-                            if #require("cmp").get_entries() == 1 then
-                                opts = { select = true }
-                            elseif require("cmp").get_selected_entry() then
-                                opts = { select = false, behavior = require("cmp").ConfirmBehavior.Replace }
-                            end
-                        end
-
-                        if opts then require("cmp").confirm(opts) else fallback() end
-                    end,
-                    s = require("cmp").mapping.confirm({ select = true }),
-                    c = require("cmp").mapping.confirm({
-                        select = true,
-                        behavior = require("cmp").ConfirmBehavior.Replace
-                    })
-                })
-            },
-            sources = {
+            mapping = mapping,
+            sources = require("cmp").config.sources({
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
-                { name = "path" },
+                { name = "luasnip" }
+            }, {
                 { name = "buffer" }
-            },
+            }),
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
                 end
             }
+        })
+        require("cmp").setup.cmdline({ "/", "?" }, {
+            mapping = mapping,
+            sources = { { name = "buffer" } }
+        })
+        require("cmp").setup.cmdline(":", {
+            mapping = mapping,
+            sources = require("cmp").config.sources({
+                { name = "path" }
+            }, {
+                { name = "cmdline" }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
         })
     end
 }
