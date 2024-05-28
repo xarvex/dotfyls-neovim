@@ -15,6 +15,7 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
 
         require("lsp-zero").extend_cmp()
+        local cmp_action = require("lsp-zero").cmp_action()
 
         local function fallback_confirm(fallback)
             local opts
@@ -36,7 +37,9 @@ return {
                 i = fallback_confirm,
                 c = fallback_confirm,
                 s = require("cmp").mapping.confirm({ select = true }),
-            })
+            }),
+            ["<S-Tab>"] = cmp_action.luasnip_jump_backward(),
+            ["<Tab>"] = cmp_action.luasnip_jump_forward()
         }
         require("cmp").setup({
             entries = { name = "custom", selection_order = "near_cursor" },
