@@ -2,8 +2,8 @@
   description = "Personal Neovim";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixos-24.04";
-    nixpkgs-unstable.url = "github:NixOS/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.04";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
