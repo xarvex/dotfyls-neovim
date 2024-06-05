@@ -33,7 +33,7 @@
         };
       in
       {
-        packages.defaut = neovim;
+        packages.default = neovim;
         apps.default = {
           type = "app";
           program = "${neovim-wrapped}/bin/nvim";
