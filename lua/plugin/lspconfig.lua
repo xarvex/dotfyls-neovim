@@ -24,7 +24,8 @@ return {
                 "pyright",
                 "bashls",
                 "html",
-                "cssls"
+                "cssls",
+                "nil"
             },
             handlers = {
                 require("lsp-zero").default_setup,

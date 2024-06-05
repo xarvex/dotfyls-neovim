@@ -15,7 +15,8 @@ return {
             go = { { "gofumpt", "goimports", "gofmt" } },
             javascript = { { "prettierd", "prettier" } },
             lua = { "stylua" },
-            sql = { "sql_formatter" }
+            sql = { "sql_formatter" },
+            nix = { "nixpkgs_fmt" }
         },
         formatters = {
             sql_formatter = {
