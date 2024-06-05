@@ -20,12 +20,12 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        neovim = (import nixpkgs-unstable { inherit system; }).neovim;
+        neovim-unwrapped = (import nixpkgs-unstable { inherit system; }).neovim-unwrapped;
 
         # this currently does not work, unable to import modules
         neovim-wrapped = pkgs.symlinkJoin {
-          name = neovim.name;
-          paths = [ neovim ];
+          name = neovim-unwrapped.name;
+          paths = [ neovim-unwrapped ];
           buildInputs = with pkgs; [ makeWrapper ];
           postBuild = ''
             wrapProgram "$out"/bin/nvim --add-flags '-u '${self}'/init.lua'
@@ -33,7 +33,7 @@
         };
       in
       {
-        packages.default = neovim;
+        packages.default = neovim-unwrapped;
         apps.default = {
           type = "app";
           program = "${neovim-wrapped}/bin/nvim";
