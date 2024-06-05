@@ -9,7 +9,7 @@
   };
 
   outputs = { flake-parts, nixpkgs, nixpkgs-unstable, self }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
-    system = [
+    systems = [
       "aarch64-darwin"
       "aarch64-linux"
       "x86_64-darwin"
