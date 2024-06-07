@@ -25,7 +25,7 @@ return {
                 "bashls",
                 "html",
                 "cssls",
-                "nil",
+                "nil_ls",
             },
             handlers = {
                 require("lsp-zero").default_setup,
