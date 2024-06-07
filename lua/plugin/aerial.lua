@@ -2,7 +2,7 @@ return {
     "stevearc/aerial.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "nvim-treesitter/nvim-treesitter"
+        "nvim-treesitter/nvim-treesitter",
     },
     cmd = {
         "AerialGo",
@@ -13,7 +13,7 @@ return {
         "AerialOpen",
         "AerialOpenAll",
         "AerialPrev",
-        "AerialToggle"
+        "AerialToggle",
     },
     keys = { { "<leader>o", vim.cmd.AerialToggle } },
     init = function()
@@ -25,8 +25,8 @@ return {
 
                 keymap("n", "{", vim.cmd.AerialPrev, { buffer = true })
                 keymap("n", "}", vim.cmd.AerialNext, { buffer = true })
-            end
+            end,
         })
     end,
-    opts = {}
+    opts = {},
 }

@@ -5,9 +5,9 @@ return {
         "UndotreeHide",
         "UndotreePersistUndo",
         "UndotreeShow",
-        "UndotreeToggle"
+        "UndotreeToggle",
     },
     keys = {
-        { "<leader>u", vim.cmd.UndotreeToggle }
-    }
+        { "<leader>u", vim.cmd.UndotreeToggle },
+    },
 }

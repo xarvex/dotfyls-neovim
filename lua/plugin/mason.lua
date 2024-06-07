@@ -6,11 +6,11 @@ return {
         "MasonLog",
         "MasonUninstall",
         "MasonUninstallAll",
-        "MasonUpdate"
+        "MasonUpdate",
     },
     keys = {
-        { "<C-A-m>", vim.cmd.Mason }
+        { "<C-A-m>", vim.cmd.Mason },
     },
     build = ":MasonUpdate",
-    opts = {}
+    opts = {},
 }

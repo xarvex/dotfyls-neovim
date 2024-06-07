@@ -12,5 +12,5 @@ return {
             lazy_dressing:load()
             vim.ui.input(...)
         end
-    end
+    end,
 }

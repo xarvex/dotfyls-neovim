@@ -7,5 +7,5 @@ return {
         vim.g.lsp_zero_extend_lspconfig = 0
         vim.g.lsp_zero_ui_float_border = 0
     end,
-    config = false
+    config = false,
 }

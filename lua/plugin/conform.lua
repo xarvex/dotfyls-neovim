@@ -5,9 +5,7 @@ return {
     keys = {
         {
             "<leader>fm",
-            function()
-                require("conform").format({ async = true, lsp_fallback = true })
-            end
+            function() require("conform").format({ async = true, lsp_fallback = true }) end,
         },
     },
     opts = {
@@ -16,13 +14,13 @@ return {
             javascript = { { "prettierd", "prettier" } },
             lua = { "stylua" },
             sql = { "sql_formatter" },
-            nix = { "nixpkgs_fmt" }
+            nix = { "nixpkgs_fmt" },
         },
         formatters = {
             sql_formatter = {
-                args = { "-c", vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "sql-formatter/config.json") }
-            }
+                args = { "-c", vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "sql-formatter/config.json") },
+            },
         },
-        format_after_save = { lsp_fallback = true }
-    }
+        format_after_save = { lsp_fallback = true },
+    },
 }

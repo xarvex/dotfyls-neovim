@@ -5,5 +5,5 @@ return {
     config = function()
         require("hardtime").setup({ max_count = 4 })
         require("hardtime").enable()
-    end
+    end,
 }

@@ -8,7 +8,7 @@ return {
         "L3MON4D3/LuaSnip",
         "onsails/lspkind.nvim",
         "rafamadriz/friendly-snippets",
-        "saadparwaiz1/cmp_luasnip"
+        "saadparwaiz1/cmp_luasnip",
     },
     event = { "CmdlineEnter", "InsertEnter" },
     config = function()
@@ -28,7 +28,11 @@ return {
                 end
             end
 
-            if opts then require("cmp").confirm(opts) else fallback() end
+            if opts then
+                require("cmp").confirm(opts)
+            else
+                fallback()
+            end
         end
         local mapping = {
             ["<C-k>"] = require("cmp").mapping(require("cmp").mapping.select_prev_item(), { "i", "c" }),
@@ -39,7 +43,7 @@ return {
                 s = require("cmp").mapping.confirm({ select = true }),
             }),
             ["<S-Tab>"] = cmp_action.luasnip_jump_backward(),
-            ["<Tab>"] = cmp_action.luasnip_jump_forward()
+            ["<Tab>"] = cmp_action.luasnip_jump_forward(),
         }
         require("cmp").setup({
             entries = { name = "custom", selection_order = "near_cursor" },
@@ -47,28 +51,26 @@ return {
             mapping = mapping,
             sources = require("cmp").config.sources({
                 { name = "nvim_lsp" },
-                { name = "luasnip" }
+                { name = "luasnip" },
             }, {
-                { name = "buffer", keyword_length = 3 }
+                { name = "buffer", keyword_length = 3 },
             }),
             snippet = {
-                expand = function(args)
-                    require("luasnip").lsp_expand(args.body)
-                end
-            }
+                expand = function(args) require("luasnip").lsp_expand(args.body) end,
+            },
         })
         require("cmp").setup.cmdline({ "/", "?" }, {
             mapping = mapping,
-            sources = { { name = "buffer", keyword_length = 3 } }
+            sources = { { name = "buffer", keyword_length = 3 } },
         })
         require("cmp").setup.cmdline(":", {
             mapping = mapping,
             sources = require("cmp").config.sources({
-                { name = "path", keyword_length = 3 }
+                { name = "path", keyword_length = 3 },
             }, {
-                { name = "cmdline", keyword_length = 3 }
+                { name = "cmdline", keyword_length = 3 },
             }),
-            matching = { disallow_symbol_nonprefix_matching = false }
+            matching = { disallow_symbol_nonprefix_matching = false },
         })
-    end
+    end,
 }

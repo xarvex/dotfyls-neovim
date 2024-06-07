@@ -9,10 +9,10 @@ local function filename_component(no_separator)
             unnamed = "",
             newfile = "",
             modified = "●",
-            readonly = ""
+            readonly = "",
         },
         fmt = function(name) return vim.fs.basename(name) == "" and "" or name end,
-        separator = separator
+        separator = separator,
     }
 end
 
@@ -23,11 +23,16 @@ return {
     opts = {
         options = {
             disabled_filetypes = {
-                "diff", "help", "qf",
-                "aerial", "fugitive", "noice", "undotree"
+                "aerial",
+                "diff",
+                "fugitive",
+                "help",
+                "qf",
+                "noice",
+                "undotree",
             },
             component_separators = "|",
-            section_separators = { left = "", right = "" }
+            section_separators = { left = "", right = "" },
         },
         sections = {
             lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
@@ -35,7 +40,7 @@ return {
             lualine_c = { "diagnostics" },
             lualine_x = { "fileformat" },
             lualine_y = { "filetype", "progress" },
-            lualine_z = { { "location", separator = { left = "", right = "" }, left_padding = 2 } }
+            lualine_z = { { "location", separator = { left = "", right = "" }, left_padding = 2 } },
         },
         inactive_sections = {
             lualine_a = {},
@@ -43,7 +48,7 @@ return {
             lualine_c = { filename_component(true), "diagnostics" },
             lualine_x = {},
             lualine_y = {},
-            lualine_z = { "location" }
-        }
-    }
+            lualine_z = { "location" },
+        },
+    },
 }
