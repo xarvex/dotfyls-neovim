@@ -1,11 +1,12 @@
 local keymap = require("shortcut").keymap
 
 -- remove crutches
+-- stylua: ignore
 for _, k in ipairs({
     "Up", "Down", "Right", "Left",
     "Insert", "Home", "End", "PageUp", "PageDown", "Delete",
     "kUp", "kDown", "kLeft", "kRight",
-    "kHome", "kOrigin", "kPageUp", "kPageDown", "kDel"
+    "kHome", "kOrigin", "kPageUp", "kPageDown", "kDel",
 }) do
     keymap({ "n", "i", "v", "x" }, string.format("<%s>", k), "<Nop>")
     keymap({ "n", "i", "v", "x" }, string.format("<C-%s>", k), "<Nop>")

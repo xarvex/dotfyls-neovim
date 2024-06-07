@@ -2,7 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "williamboman/mason-lspconfig.nvim"
+        "williamboman/mason-lspconfig.nvim",
     },
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
@@ -24,30 +24,28 @@ return {
                 "pyright",
                 "bashls",
                 "html",
-                "cssls"
+                "cssls",
             },
             handlers = {
                 require("lsp-zero").default_setup,
                 gopls = function()
                     require("lspconfig").gopls.setup({
-                        settings = { gofumpt = true }
+                        settings = { gofumpt = true },
                     })
                 end,
                 clangd = function()
                     require("lspconfig").clangd.setup({
-                        on_attach = function(_, bufnr)
-                            keymap("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, { buffer = bufnr })
-                        end
+                        on_attach = function(_, bufnr) keymap("n", "<leader>sh", vim.cmd.ClangdSwitchSourceHeader, { buffer = bufnr }) end,
                     })
                 end,
                 denols = function()
                     require("lspconfig").denols.setup({
-                        root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")
+                        root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
                     })
                 end,
                 tsserver = function()
                     require("lspconfig").tsserver.setup({
-                        root_dir = require("lspconfig").util.root_pattern("tsconfig.json")
+                        root_dir = require("lspconfig").util.root_pattern("tsconfig.json"),
                     })
                 end,
                 lua_ls = function()
@@ -56,10 +54,10 @@ return {
                 end,
                 bashls = function()
                     require("lspconfig").bashls.setup({
-                        filetypes = { "bash", "sh", "zsh" }
+                        filetypes = { "bash", "sh", "zsh" },
                     })
-                end
-            }
+                end,
+            },
         })
-    end
+    end,
 }

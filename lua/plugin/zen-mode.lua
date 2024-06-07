@@ -6,7 +6,7 @@ return {
             cmd = {
                 "Twilight",
                 "TwilightDisable",
-                "TwilightEnable"
+                "TwilightEnable",
             },
             opts = {
                 dimming = { inactive = true },
@@ -15,22 +15,21 @@ return {
                     "function",
                     "function_definition",
                     "method",
-                    "table"
-                }
-            }
-        }
-    }
-    ,
+                    "table",
+                },
+            },
+        },
+    },
     cmd = "ZenMode",
     keys = {
         require("lazy-load"):keymap_require("n", "<leader>zz", "zen-mode", function(zen_mode)
             zen_mode.toggle()
             vim.wo.wrap = false
-        end)
+        end),
     },
     opts = {
         window = {
-            options = { number = true, relativenumber = true }
-        }
-    }
+            options = { number = true, relativenumber = true },
+        },
+    },
 }

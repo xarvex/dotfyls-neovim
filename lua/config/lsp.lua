@@ -26,5 +26,5 @@ vim.api.nvim_create_autocmd("Lspattach", {
             local filter = { bufnr = args.buf }
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
         end or "<Nop>", opts)
-    end
+    end,
 })

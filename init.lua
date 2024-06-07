@@ -9,7 +9,7 @@ if vim.fn.isdirectory(lazypath) == 0 then
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
         "--branch=stable",
-        lazypath
+        lazypath,
     })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -17,11 +17,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- lazy-load.nvim must be declared first to be able to use in config
     { "https://gitlab.com/xarvex/lazy-load.nvim", branch = "0.1.x", lazy = true },
-    { import = "plugin" } -- load other plugins after
+    { import = "plugin" }, -- load other plugins after
 }, {
     dev = {
-        path = vim.env.DOTFYLS_PROJECTS_DIR or
-            vim.fs.joinpath(vim.env.XDG_DOCUMENTS_DIR or vim.fs.joinpath(assert(vim.env.HOME), "Documents"), "Projects")
+        path = vim.env.DOTFYLS_PROJECTS_DIR
+            or vim.fs.joinpath(vim.env.XDG_DOCUMENTS_DIR or vim.fs.joinpath(assert(vim.env.HOME), "Documents"), "Projects"),
     },
     performance = {
         rtp = {
@@ -32,9 +32,9 @@ require("lazy").setup({
                 "rplugin",
                 "spellfile",
                 "tohtml",
-                "tutor"
-            }
-        }
-    }
+                "tutor",
+            },
+        },
+    },
 })
 require("shortcut").keymap("n", "<C-A-l>", vim.cmd.Lazy)

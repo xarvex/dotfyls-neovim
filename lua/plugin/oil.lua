@@ -8,5 +8,5 @@ return {
         keymap("n", "-", vim.cmd.Oil)
         keymap("n", "<leader>-", "<cmd>Oil --float<CR>")
     end,
-    opts = {}
+    opts = {},
 }

@@ -7,10 +7,10 @@ return {
         terminal_colors = true,
         styles = {
             sidebars = "transparent",
-            floats = "transparent"
+            floats = "transparent",
         },
         hide_inactive_statusline = false,
         dim_inactive = false,
-        lualine_bold = false
-    }
+        lualine_bold = false,
+    },
 }
