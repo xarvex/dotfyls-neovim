@@ -18,7 +18,10 @@ return {
         },
         formatters = {
             sql_formatter = {
-                args = { "-c", vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "sql-formatter/config.json") },
+                args = {
+                    "-c",
+                    vim.fs.joinpath(vim.env.XDG_CONFIG_HOME or vim.fs.joinpath(vim.env.HOME, ".config"), "sql-formatter/config.json"),
+                },
             },
         },
         format_after_save = { lsp_fallback = true },
