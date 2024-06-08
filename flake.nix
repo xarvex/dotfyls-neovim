@@ -9,6 +9,28 @@
   };
 
   outputs = { flake-parts, nixpkgs, nixpkgs-unstable, self }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
+    imports = [
+      ({ flake-parts-lib, lib, ... }:
+        let
+          inherit (lib) mkOption types;
+          inherit (flake-parts-lib) mkTransposedPerSystemModule;
+
+          specialArgsType = types.submodule {
+            options = {
+              extraPackages = mkOption { type = types.listOf types.package; };
+            };
+          };
+        in
+        mkTransposedPerSystemModule {
+          name = "specialArgs";
+          option = mkOption {
+            type = types.lazyAttrsOf specialArgsType;
+            default = { };
+          };
+          file = self;
+        })
+    ];
+
     systems = [
       "aarch64-darwin"
       "aarch64-linux"
@@ -38,8 +60,17 @@
           type = "app";
           program = "${neovim-wrapped}/bin/nvim";
         };
-      };
 
-    flake.specialArgs = { inherit self; };
+        specialArgs = {
+          inherit self;
+
+          extraPackages.default = with pkgs; [
+            clang
+            git
+            gnumake
+            ripgrep
+          ];
+        };
+      };
   };
 }
