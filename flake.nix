@@ -61,7 +61,7 @@
           program = "${neovim-wrapped}/bin/nvim";
         };
 
-        specialArgs = {
+        specialArgs.default = {
           inherit self;
 
           package = neovim-unwrapped;
