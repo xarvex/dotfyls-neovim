@@ -55,7 +55,7 @@
         };
       in
       {
-        packages.default = neovim-unwrapped;
+        packages.default = neovim-unwrapped; # will be bundled with config
         apps.default = {
           type = "app";
           program = "${neovim-wrapped}/bin/nvim";
@@ -64,7 +64,8 @@
         specialArgs = {
           inherit self;
 
-          extraPackages.default = with pkgs; [
+          package = neovim-unwrapped;
+          extraPackages = with pkgs; [
             clang
             git
             gnumake
