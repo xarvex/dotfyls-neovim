@@ -17,6 +17,8 @@
 
           specialArgsType = types.submodule {
             options = {
+              self = mkOption { };
+              package = mkOption { type = types.package; };
               extraPackages = mkOption { type = types.listOf types.package; };
             };
           };
