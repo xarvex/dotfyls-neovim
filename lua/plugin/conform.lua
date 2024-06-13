@@ -13,8 +13,8 @@ return {
             go = { { "gofumpt", "goimports", "gofmt" } },
             javascript = { { "prettierd", "prettier" } },
             lua = { "stylua" },
-            sql = { "sql_formatter" },
             nix = { "nixpkgs_fmt" },
+            sql = { "sql_formatter" },
         },
         formatters = {
             sql_formatter = {
