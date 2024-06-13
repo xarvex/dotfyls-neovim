@@ -37,3 +37,9 @@ opt.isfname:append("@-@")
 opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(event)
+        if event.match == "nix" then vim.bo[event.buf].shiftwidth = 2 end
+    end,
+})
