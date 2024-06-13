@@ -71,6 +71,8 @@
             clang
             git
             gnumake
+            nil
+            nixpkgs-fmt
             ripgrep
           ];
         };

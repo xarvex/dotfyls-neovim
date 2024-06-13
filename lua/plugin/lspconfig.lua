@@ -11,22 +11,6 @@ return {
 
         local keymap = require("shortcut").keymap
         require("mason-lspconfig").setup({
-            ensure_installed = {
-                "rust_analyzer",
-                "gopls",
-                "clangd",
-                -- "java_language_server",
-                "kotlin_language_server",
-                "denols",
-                "tsserver",
-                "eslint",
-                "lua_ls",
-                "pyright",
-                "bashls",
-                "html",
-                "cssls",
-                "nil_ls",
-            },
             handlers = {
                 require("lsp-zero").default_setup,
                 gopls = function()

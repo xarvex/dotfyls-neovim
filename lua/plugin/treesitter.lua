@@ -4,21 +4,6 @@ return {
     build = function() require("nvim-treesitter.install").update({ with_sync = true })() end,
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = {
-                "rust",
-                "go",
-                "c",
-                "cpp",
-                "java",
-                "kotlin",
-                "javascript",
-                "typescript",
-                "lua",
-                "python",
-                "bash",
-                "html",
-                "css",
-            },
             ignore_install = {},
             modules = {},
             highlight = {
