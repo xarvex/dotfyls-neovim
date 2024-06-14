@@ -14,6 +14,7 @@ return {
             javascript = { { "prettierd", "prettier" } },
             lua = { "stylua" },
             nix = { "nixpkgs_fmt" },
+            python = { "ruff_format" },
             sql = { "sql_formatter" },
         },
         formatters = {
