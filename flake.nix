@@ -6,9 +6,11 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # do not override/follow
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = { flake-parts, nixpkgs, nixpkgs-unstable, self }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = { flake-parts, nixpkgs, nixpkgs-unstable, self, systems }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
     imports = [
       ({ flake-parts-lib, lib, ... }:
         let
@@ -33,12 +35,7 @@
         })
     ];
 
-    systems = [
-      "aarch64-darwin"
-      "aarch64-linux"
-      "x86_64-darwin"
-      "x86_64-linux"
-    ];
+    systems = import systems;
 
     perSystem = { system, ... }:
       let
