@@ -14,21 +14,18 @@
     imports = [
       ({ flake-parts-lib, lib, ... }:
         let
-          inherit (lib) mkOption types;
-          inherit (flake-parts-lib) mkTransposedPerSystemModule;
-
-          specialArgsType = types.submodule {
+          specialArgsType = lib.types.submodule {
             options = {
-              self = mkOption { };
-              package = mkOption { type = types.package; };
-              extraPackages = mkOption { type = types.listOf types.package; };
+              self = lib.mkOption { };
+              package = lib.mkOption { type = lib.types.package; };
+              extraPackages = lib.mkOption { type = lib.types.listOf lib.types.package; };
             };
           };
         in
-        mkTransposedPerSystemModule {
+        flake-parts-lib.mkTransposedPerSystemModule {
           name = "specialArgs";
-          option = mkOption {
-            type = types.lazyAttrsOf specialArgsType;
+          option = lib.mkOption {
+            type = lib.types.lazyAttrsOf specialArgsType;
             default = { };
           };
           file = self;
