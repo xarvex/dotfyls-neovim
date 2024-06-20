@@ -59,6 +59,7 @@
 
           package = pkgs.neovim-unwrapped;
           extraPackages = with pkgs; [
+            clang
             git
             gnumake
             ripgrep
