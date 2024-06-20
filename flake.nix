@@ -9,28 +9,7 @@
     systems.url = "github:nix-systems/default";
   };
 
-  outputs = { flake-parts, nixpkgs, self, systems }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
-    imports = [
-      ({ flake-parts-lib, lib, ... }:
-        let
-          specialArgsType = lib.types.submodule {
-            options = {
-              self = lib.mkOption { };
-              package = lib.mkOption { type = lib.types.package; };
-              extraPackages = lib.mkOption { type = lib.types.listOf lib.types.package; };
-            };
-          };
-        in
-        flake-parts-lib.mkTransposedPerSystemModule {
-          name = "specialArgs";
-          option = lib.mkOption {
-            type = lib.types.lazyAttrsOf specialArgsType;
-            default = { };
-          };
-          file = self;
-        })
-    ];
-
+  outputs = { flake-parts, nixpkgs, self, systems, ... }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
     systems = import systems;
 
     perSystem = { system, ... }:
@@ -53,18 +32,25 @@
           type = "app";
           program = "${neovim-wrapped}/bin/nvim";
         };
-
-        specialArgs.default = {
-          inherit self;
-
-          package = pkgs.neovim-unwrapped;
-          extraPackages = with pkgs; [
-            clang
-            git
-            gnumake
-            ripgrep
-          ];
-        };
       };
+
+    flake.homeManagerModules.defualt = ({ config, lib, pkgs, ... }: lib.mkIf config.programs.neovim.enable {
+      programs.neovim = {
+        withNodeJs = lib.mkDefault false;
+        withPython3 = lib.mkDefault false;
+        withRuby = lib.mkDefault false;
+        extraPackages = with pkgs; [
+          clang
+          git
+          gnumake
+          ripgrep
+        ];
+      };
+
+      xdg.configFile.nvim = {
+        recursive = true;
+        source = ./.;
+      };
+    });
   };
 }
