@@ -3,14 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # do not override/follow
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     systems.url = "github:nix-systems/default";
   };
 
-  outputs = { flake-parts, nixpkgs, nixpkgs-unstable, self, systems }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = { flake-parts, nixpkgs, self, systems }@inputs: flake-parts.lib.mkFlake { inherit inputs; } {
     imports = [
       ({ flake-parts-lib, lib, ... }:
         let
@@ -38,12 +37,10 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        neovim-unwrapped = (import nixpkgs-unstable { inherit system; }).neovim-unwrapped;
-
         # this currently does not work, unable to import modules
         neovim-wrapped = pkgs.symlinkJoin {
-          name = neovim-unwrapped.name;
-          paths = [ neovim-unwrapped ];
+          name = pkgs.neovim-unwrapped.name;
+          paths = [ pkgs.neovim-unwrapped ];
           buildInputs = with pkgs; [ makeWrapper ];
           postBuild = ''
             wrapProgram "$out"/bin/nvim --add-flags '-u '${self}'/init.lua'
@@ -51,7 +48,7 @@
         };
       in
       {
-        packages.default = neovim-unwrapped; # will be bundled with config
+        packages.default = pkgs.neovim-unwrapped; # will be bundled with config
         apps.default = {
           type = "app";
           program = "${neovim-wrapped}/bin/nvim";
@@ -60,7 +57,7 @@
         specialArgs.default = {
           inherit self;
 
-          package = neovim-unwrapped;
+          package = pkgs.neovim-unwrapped;
           extraPackages = with pkgs; [
             clang
             git
