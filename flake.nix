@@ -34,7 +34,7 @@
         };
       };
 
-    flake.homeManagerModules.defualt = ({ config, lib, pkgs, ... }: lib.mkIf config.programs.neovim.enable {
+    flake.homeManagerModules.default = ({ config, lib, pkgs, ... }: lib.mkIf config.programs.neovim.enable {
       programs.neovim = {
         withNodeJs = lib.mkDefault false;
         withPython3 = lib.mkDefault false;
