@@ -27,30 +27,42 @@
         };
       in
       {
-        packages.default = pkgs.neovim-unwrapped; # will be bundled with config
-        apps.default = {
-          type = "app";
-          program = "${neovim-wrapped}/bin/nvim";
+        packages = rec {
+          default = neovim;
+
+          neovim = pkgs.neovim-unwrapped; # will be bundled with config
+        };
+        apps = rec {
+          default = neovim;
+
+          neovim = {
+            type = "app";
+            program = "${neovim-wrapped}/bin/nvim";
+          };
         };
       };
 
-    flake.homeManagerModules.default = ({ config, lib, pkgs, ... }: lib.mkIf config.programs.neovim.enable {
-      programs.neovim = {
-        withNodeJs = lib.mkDefault false;
-        withPython3 = lib.mkDefault false;
-        withRuby = lib.mkDefault false;
-        extraPackages = with pkgs; [
-          clang
-          git
-          gnumake
-          ripgrep
-        ];
-      };
+    flake.homeManagerModules = rec {
+      default = neovim;
 
-      xdg.configFile.nvim = {
-        recursive = true;
-        source = ./.;
-      };
-    });
+      neovim = ({ config, lib, pkgs, ... }: lib.mkIf config.programs.neovim.enable {
+        programs.neovim = {
+          withNodeJs = lib.mkDefault false;
+          withPython3 = lib.mkDefault false;
+          withRuby = lib.mkDefault false;
+          extraPackages = with pkgs; [
+            clang
+            git
+            gnumake
+            ripgrep
+          ];
+        };
+
+        xdg.configFile.nvim = {
+          recursive = true;
+          source = ./.;
+        };
+      });
+    };
   };
 }
