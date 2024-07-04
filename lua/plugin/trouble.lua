@@ -1,3 +1,4 @@
+-- TODO: rework for version 3
 local lazy_trouble = require("lazy-load"):require("trouble")
 
 return {
