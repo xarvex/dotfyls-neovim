@@ -13,7 +13,7 @@ return {
             go = { { "gofumpt", "goimports", "gofmt" } },
             javascript = { { "prettierd", "prettier" } },
             lua = { "stylua" },
-            nix = { "nixpkgs_fmt" },
+            nix = { "nixfmt", "nixpkgs_fmt" },
             python = { "ruff_format" },
             sql = { "sql_formatter" },
         },
