@@ -52,6 +52,8 @@ return {
                 { name = "luasnip" },
             }, {
                 { name = "buffer", keyword_length = 3 },
+            }, {
+                { name = "lazydev", group_index = 0 },
             }),
             mapping = mapping,
             snippet = {

@@ -39,14 +39,7 @@ return {
             },
             html = { "vscode-html-language-server", true },
             jsonls = { "vscode-json-language-server", true },
-            lua_ls = {
-                "lua-language-server",
-                function()
-                    require("neodev")
-
-                    return true
-                end,
-            },
+            lua_ls = { "lua-language-server", true },
             nil_ls = { "nil", true },
             pyright = { "pyright-langserver", true },
             rust_analyzer = { "rust-analyzer", true },
