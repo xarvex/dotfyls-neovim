@@ -134,10 +134,17 @@
               ];
             };
 
-            xdg.configFile.nvim = {
-              recursive = true;
-              source = ./.;
+            xdg.configFile = {
+              "nvim/init.lua".source = ./init.lua;
+              "nvim/lua" = {
+                recursive = true;
+                source = ./lua;
+              };
             };
+
+            systemd.user.tmpfiles.rules = [
+              "f+ ${config.xdg.configHome}/nvim/lazy-lock.json - - - - ${builtins.readFile ./lazy-lock.json}"
+            ];
           };
       };
     };
