@@ -83,9 +83,9 @@
                 packages = [ pkgs.neovim ];
 
                 enterShell = ''
-                  NVIM_APPNAME="dotfyls/devshell/nvim-$(sha1sum - <<<"${cfg.devenv.root}" | head -c40)''${DEVENV_ROOT//[^a-zA-Z0-9]/-}"
+                  NVIM_APPNAME="dotfyls/devshell/nvim/$(sha1sum - <<<"${cfg.devenv.root}" | head -c40)''${DEVENV_ROOT//[^a-zA-Z0-9]/-}"
                   export NVIM_APPNAME
-                  mkdir -p "''${XDG_CONFIG_HOME:-''${HOME}/.config}/dotfyls/devshell"
+                  mkdir -p "''${XDG_CONFIG_HOME:-''${HOME}/.config}/dotfyls/devshell/nvim"
                   ln -fsT "${cfg.devenv.root}" "''${XDG_CONFIG_HOME:-''${HOME}/.config}/''${NVIM_APPNAME}"
                 '';
 
