@@ -32,7 +32,7 @@
       systems = import inputs.systems;
 
       perSystem =
-        { pkgs, ... }:
+        { config, pkgs, ... }:
         let
           inherit (nixpkgs) lib;
 
@@ -61,41 +61,53 @@
               type = "app";
               program = "${neovim-wrapped}/bin/nvim";
             };
-
           };
 
           devenv.shells = rec {
             default = neovim;
 
-            neovim = {
-              devenv.root =
-                let
-                  devenvRoot = builtins.readFile inputs.devenv-root.outPath;
-                in
-                # If not overriden (/dev/null), --impure is necessary.
-                lib.mkIf (devenvRoot != "") devenvRoot;
+            neovim =
+              let
+                cfg = config.devenv.shells.neovim;
+              in
+              {
+                devenv.root =
+                  let
+                    devenvRoot = builtins.readFile inputs.devenv-root.outPath;
+                  in
+                  # If not overriden (/dev/null), --impure is necessary.
+                  lib.mkIf (devenvRoot != "") devenvRoot;
 
-              name = "Neovim";
+                name = "Neovim";
 
-              languages = {
-                lua = {
-                  enable = true;
-                  package = pkgs.luajit;
+                packages = [ pkgs.neovim ];
+
+                enterShell = ''
+                  NVIM_APPNAME="dotfyls/devshell/nvim-$(sha1sum - <<<"${cfg.devenv.root}" | head -c40)''${DEVENV_ROOT//[^a-zA-Z0-9]/-}"
+                  export NVIM_APPNAME
+                  mkdir -p "''${XDG_CONFIG_HOME:-''${HOME}/.config}/dotfyls/devshell"
+                  ln -fsT "${cfg.devenv.root}" "''${XDG_CONFIG_HOME:-''${HOME}/.config}/''${NVIM_APPNAME}"
+                '';
+
+                languages = {
+                  lua = {
+                    enable = true;
+                    package = pkgs.luajit;
+                  };
+                  nix.enable = true;
                 };
-                nix.enable = true;
-              };
 
-              pre-commit.hooks = {
-                deadnix.enable = true;
-                flake-checker.enable = true;
-                nixfmt = {
-                  enable = true;
-                  package = pkgs.nixfmt-rfc-style;
+                pre-commit.hooks = {
+                  deadnix.enable = true;
+                  flake-checker.enable = true;
+                  nixfmt = {
+                    enable = true;
+                    package = pkgs.nixfmt-rfc-style;
+                  };
+                  statix.enable = true;
+                  stylua.enable = true;
                 };
-                statix.enable = true;
-                stylua.enable = true;
               };
-            };
           };
         };
 
