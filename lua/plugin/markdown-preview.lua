@@ -1,3 +1,4 @@
+-- WARNING: UNMAINTAINED
 return {
     "iamcco/markdown-preview.nvim",
     cmd = {
