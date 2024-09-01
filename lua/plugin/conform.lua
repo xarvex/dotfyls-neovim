@@ -5,18 +5,23 @@ return {
     keys = {
         {
             "<leader>fm",
-            function() require("conform").format({ async = true, lsp_fallback = true }) end,
+            function() require("conform").format({ async = true }) end,
         },
     },
     opts = {
         formatters_by_ft = {
-            go = { { "gofumpt", "goimports", "gofmt" } },
-            javascript = { { "prettierd", "prettier" } },
+            go = { "gofumpt", "goimports", "gofmt" },
+            javascript = { "prettierd", "prettier" },
             lua = { "stylua" },
             nix = { "nixfmt", "nixpkgs_fmt" },
             python = { "ruff_format" },
             sql = { "sql_formatter" },
         },
+        default_format_opts = {
+            lsp_format = "fallback",
+            stop_after_first = true,
+        },
+        format_after_save = {},
         formatters = {
             sql_formatter = {
                 args = {
@@ -25,6 +30,5 @@ return {
                 },
             },
         },
-        format_after_save = { lsp_fallback = true },
     },
 }
