@@ -1,1 +1,6 @@
 generated/
+
+.devenv
+.direnv
+
+.pre-commit-config.yaml

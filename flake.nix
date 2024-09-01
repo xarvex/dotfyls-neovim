@@ -2,6 +2,13 @@
   description = "Personal Neovim";
 
   inputs = {
+    devenv.url = "github:cachix/devenv";
+
+    devenv-root = {
+      url = "file+file:///dev/null";
+      flake = false;
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -20,12 +27,14 @@
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ inputs.devenv.flakeModule ];
+
       systems = import inputs.systems;
 
       perSystem =
-        { system, ... }:
+        { pkgs, ... }:
         let
-          pkgs = import nixpkgs { inherit system; };
+          inherit (nixpkgs) lib;
 
           # This currently does not work, unable to import modules.
           neovim-wrapped = pkgs.symlinkJoin {
@@ -51,6 +60,41 @@
             neovim = {
               type = "app";
               program = "${neovim-wrapped}/bin/nvim";
+            };
+
+          };
+
+          devenv.shells = rec {
+            default = neovim;
+
+            neovim = {
+              devenv.root =
+                let
+                  devenvRoot = builtins.readFile inputs.devenv-root.outPath;
+                in
+                # If not overriden (/dev/null), --impure is necessary.
+                lib.mkIf (devenvRoot != "") devenvRoot;
+
+              name = "Neovim";
+
+              languages = {
+                lua = {
+                  enable = true;
+                  package = pkgs.luajit;
+                };
+                nix.enable = true;
+              };
+
+              pre-commit.hooks = {
+                deadnix.enable = true;
+                flake-checker.enable = true;
+                nixfmt = {
+                  enable = true;
+                  package = pkgs.nixfmt-rfc-style;
+                };
+                statix.enable = true;
+                stylua.enable = true;
+              };
             };
           };
         };
