@@ -80,7 +80,10 @@
 
                 name = "Neovim";
 
-                packages = [ pkgs.neovim ];
+                packages = [
+                  pkgs.neovim
+                  pkgs.nodejs_22
+                ];
 
                 enterShell = ''
                   NVIM_APPNAME="dotfyls/devshell/nvim/$(sha1sum - <<<"${cfg.devenv.root}" | head -c40)''${DEVENV_ROOT//[^a-zA-Z0-9]/-}"
@@ -127,10 +130,8 @@
               withPython3 = lib.mkDefault false;
               withRuby = lib.mkDefault false;
               extraPackages = with pkgs; [
-                clang
                 git
-                gnumake
-                ripgrep
+                nodejs_22
               ];
             };
 
