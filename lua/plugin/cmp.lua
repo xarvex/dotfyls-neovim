@@ -14,7 +14,6 @@ return {
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
 
-        require("lsp-zero").extend_cmp()
         local cmp_action = require("lsp-zero").cmp_action()
 
         local function fallback_confirm(fallback)
@@ -48,28 +47,28 @@ return {
         require("cmp").setup({
             entries = { name = "custom", selection_order = "near_cursor" },
             formatting = { format = require("lspkind").cmp_format() },
-            mapping = mapping,
             sources = require("cmp").config.sources({
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
             }, {
                 { name = "buffer", keyword_length = 3 },
             }),
+            mapping = mapping,
             snippet = {
                 expand = function(args) require("luasnip").lsp_expand(args.body) end,
             },
         })
         require("cmp").setup.cmdline({ "/", "?" }, {
-            mapping = mapping,
             sources = { { name = "buffer", keyword_length = 3 } },
+            mapping = mapping,
         })
         require("cmp").setup.cmdline(":", {
-            mapping = mapping,
             sources = require("cmp").config.sources({
                 { name = "path", keyword_length = 3 },
             }, {
                 { name = "cmdline", keyword_length = 3 },
             }),
+            mapping = mapping,
             matching = { disallow_symbol_nonprefix_matching = false },
         })
     end,

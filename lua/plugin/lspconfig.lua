@@ -77,7 +77,10 @@ return {
             end
         end
 
-        require("lsp-zero").extend_lspconfig()
+        require("lsp-zero").extend_lspconfig({
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            sign_text = false,
+        })
 
         if require("env").mason_used then
             require("mason-lspconfig").setup({
