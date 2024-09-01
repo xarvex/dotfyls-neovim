@@ -8,8 +8,8 @@ for _, k in ipairs({
     "kUp", "kDown", "kLeft", "kRight",
     "kHome", "kOrigin", "kPageUp", "kPageDown", "kDel",
 }) do
-    keymap({ "n", "i", "v", "x" }, string.format("<%s>", k), "<Nop>")
-    keymap({ "n", "i", "v", "x" }, string.format("<C-%s>", k), "<Nop>")
+    keymap({ "i", "v", "x" }, string.format("<%s>", k), "<Nop>")
+    keymap({ "i", "v", "x" }, string.format("<C-%s>", k), "<Nop>")
 end
 
 -- better up/down (fixes problems with wrapped lines)

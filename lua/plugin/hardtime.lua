@@ -2,8 +2,13 @@ return {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
-    config = function()
-        require("hardtime").setup({ max_count = 4 })
-        require("hardtime").enable()
-    end,
+    opts = {
+        max_count = 5,
+        disabled_keys = {
+            ["<Up>"] = { "i", "v", "x" },
+            ["<Down>"] = { "i", "v", "x" },
+            ["<Left>"] = { "i", "v", "x" },
+            ["<Right>"] = { "i", "v", "x" },
+        },
+    },
 }
