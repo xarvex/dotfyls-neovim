@@ -68,11 +68,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap("n", "[d", function() vim.diagnostic.goto_prev({ float = float }) end, opts)
         keymap("n", "]d", function() vim.diagnostic.goto_next({ float = float }) end, opts)
 
-        keymap("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        keymap("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-        keymap("n", "gT", function() vim.lsp.buf.type_definition() end, opts)
-        keymap("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-        keymap("n", "gr", function() vim.lsp.buf.references() end, opts)
+        -- Below now handled by Trouble:
+        -- keymap("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        -- keymap("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+        -- keymap("n", "gT", function() vim.lsp.buf.type_definition() end, opts)
+        -- keymap("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+        -- keymap("n", "gr", function() vim.lsp.buf.references() end, opts)
 
         keymap("n", "K", function() vim.lsp.buf.hover() end, opts)
         keymap({ "n", "i" }, "<C-;>", function() vim.lsp.buf.signature_help() end, opts)
