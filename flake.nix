@@ -140,9 +140,7 @@
             };
 
             systemd.user.tmpfiles.rules = [
-              "f+ ${config.xdg.configHome}/nvim/lazy-lock.json - - - - ${
-                builtins.replaceStrings [ "\n" ] [ "\\n" ] (builtins.readFile ./lazy-lock.json)
-              }"
+              "C+ ${config.xdg.configHome}/nvim/lazy-lock.json - - - - ${./lazy-lock.json}"
             ];
           };
       };
