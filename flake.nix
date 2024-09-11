@@ -126,7 +126,9 @@
               withPython3 = lib.mkDefault false;
               withRuby = lib.mkDefault false;
               extraPackages = with pkgs; [
+                gcc
                 git
+                gnumake
                 nodejs_22
               ];
             };
