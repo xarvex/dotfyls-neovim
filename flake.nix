@@ -14,18 +14,21 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    nix2container = {
+      url = "github:nlewo/nix2container";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     systems.url = "github:nix-systems/default";
   };
 
   outputs =
-    {
-      flake-parts,
-      nixpkgs,
-      self,
-      ...
-    }@inputs:
+    { flake-parts, nixpkgs, ... }@inputs:
+    let
+      inherit (nixpkgs) lib;
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ inputs.devenv.flakeModule ];
 
@@ -33,36 +36,7 @@
 
       perSystem =
         { pkgs, ... }:
-        let
-          inherit (nixpkgs) lib;
-
-          # This currently does not work, unable to import modules.
-          neovim-wrapped = pkgs.symlinkJoin {
-            inherit (pkgs.neovim-unwrapped) name;
-
-            paths = [ pkgs.neovim-unwrapped ];
-            nativeBuildInputs = with pkgs; [ makeWrapper ];
-            postBuild = ''
-              wrapProgram "''${out}"/bin/nvim --add-flags '-u '${self}'/init.lua'
-            '';
-          };
-        in
         {
-          packages = rec {
-            default = neovim;
-
-            # Will be bundled with config.
-            neovim = pkgs.neovim-unwrapped;
-          };
-          apps = rec {
-            default = neovim;
-
-            neovim = {
-              type = "app";
-              program = "${neovim-wrapped}/bin/nvim";
-            };
-          };
-
           devenv.shells = rec {
             default = neovim;
 
@@ -77,6 +51,9 @@
               name = "Neovim";
 
               packages = [
+                pkgs.gcc
+                pkgs.git
+                pkgs.gnumake
                 pkgs.neovim
                 pkgs.nodejs_22
               ];
