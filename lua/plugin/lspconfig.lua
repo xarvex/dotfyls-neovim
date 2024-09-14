@@ -44,7 +44,7 @@ return {
             pyright = { "pyright-langserver", true },
             rust_analyzer = { "rust-analyzer", true },
             svelte = { "svelteserver", true },
-            tsserver = {
+            ts_ls = {
                 "typescript-language-server",
                 {
                     root_dir = require("lspconfig").util.root_pattern("tsconfig.json"),
