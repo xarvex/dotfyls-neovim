@@ -1,4 +1,4 @@
-local keymap = require("shortcut").keymap
+local keymap = require("dotfyls.shortcut").keymap
 
 -- remove crutches
 -- stylua: ignore

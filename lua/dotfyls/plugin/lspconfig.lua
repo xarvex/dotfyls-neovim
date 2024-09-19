@@ -2,12 +2,12 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        { "williamboman/mason-lspconfig.nvim", enabled = require("env").mason_used },
+        { "williamboman/mason-lspconfig.nvim", enabled = require("dotfyls.env").mason_used },
     },
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
     config = function()
-        local keymap = require("shortcut").keymap
+        local keymap = require("dotfyls.shortcut").keymap
 
         local servers = {
             astro = { "astro-ls", true },
@@ -75,7 +75,7 @@ return {
             sign_text = false,
         })
 
-        if require("env").mason_used then
+        if require("dotfyls.env").mason_used then
             require("mason-lspconfig").setup({
                 handlers = { function(name) setup_server(name, true) end },
             })

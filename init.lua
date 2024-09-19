@@ -1,4 +1,4 @@
-require("config")
+require("dotfyls.config")
 
 -- use lazy.nvim as plugin manager
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- lazy-load.nvim must be declared first to be able to use in config
     { "https://gitlab.com/xarvex/lazy-load.nvim", branch = "0.1.x", lazy = true },
-    { import = "plugin" }, -- load other plugins after
+    { import = "dotfyls.plugin" }, -- load other plugins after
 }, {
     dev = {
         path = vim.env.DOTFYLS_PROJECTS_DIR
@@ -37,4 +37,4 @@ require("lazy").setup({
         },
     },
 })
-require("shortcut").keymap("n", "<C-A-l>", vim.cmd.Lazy)
+require("dotfyls.shortcut").keymap("n", "<C-A-l>", vim.cmd.Lazy)

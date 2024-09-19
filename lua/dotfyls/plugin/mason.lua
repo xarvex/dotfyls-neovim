@@ -1,6 +1,6 @@
 return {
     "williamboman/mason.nvim",
-    enabled = require("env").mason_used,
+    enabled = require("dotfyls.env").mason_used,
     cmd = {
         "Mason",
         "MasonInstall",

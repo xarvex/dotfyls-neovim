@@ -21,7 +21,7 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("LazyLoad", {}),
             callback = function()
-                local keymap = require("shortcut").keymap
+                local keymap = require("dotfyls.shortcut").keymap
 
                 keymap("n", "{", vim.cmd.AerialPrev, { buffer = true })
                 keymap("n", "}", vim.cmd.AerialNext, { buffer = true })

@@ -3,7 +3,7 @@ return {
     event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
     opts = {
         on_attach = function(bufnr)
-            local keymap = require("shortcut").keymap
+            local keymap = require("dotfyls.shortcut").keymap
             local opts = { buffer = bufnr }
 
             keymap("n", "[g", function()

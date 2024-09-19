@@ -1,5 +1,5 @@
 local group = vim.api.nvim_create_augroup("UserEvent", {})
-local filtered_filetypes = require("set").into_set({
+local filtered_filetypes = require("dotfyls.set").into_set({
     "oil",
 })
 local function filter(bufnr) return filtered_filetypes[vim.bo[bufnr].filetype] == nil end
