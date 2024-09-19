@@ -2,7 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "williamboman/mason-lspconfig.nvim",
+        { "williamboman/mason-lspconfig.nvim", enabled = require("env").mason_used },
     },
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
@@ -42,7 +42,7 @@ return {
             lua_ls = { "lua-language-server", true },
             nil_ls = { "nil", true },
             pyright = { "pyright-langserver", true },
-            rust_analyzer = { "rust-analyzer", true },
+            rust_analyzer = nil,
             svelte = { "svelteserver", true },
             ts_ls = {
                 "typescript-language-server",

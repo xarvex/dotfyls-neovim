@@ -1,5 +1,6 @@
 return {
     "williamboman/mason.nvim",
+    enabled = require("env").mason_used,
     cmd = {
         "Mason",
         "MasonInstall",

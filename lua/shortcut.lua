@@ -9,4 +9,6 @@ M.writefile = function(object, fname, flags)
     return vim.fn.writefile(object, fname, flags)
 end
 
+M.executable = function(expr) return vim.fn.executable(expr) == 1 end
+
 return M
