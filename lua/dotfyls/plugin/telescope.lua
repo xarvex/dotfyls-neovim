@@ -1,44 +1,47 @@
-local lazy_telescope = require("lazy-load"):require("telescope.builtin")
-
 return {
-    "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-        "nvim-tree/nvim-web-devicons",
-        "nvim-treesitter/nvim-treesitter",
-    },
-    cmd = "Telescope",
-    keys = {
-        lazy_telescope:keymap_require("n", "<leader>ff", nil, "find_files"),
-        lazy_telescope:keymap_require("n", "<leader>fg", nil, "live_grep"),
-        lazy_telescope:keymap_require("n", "<leader>fb", nil, "buffers"),
-        lazy_telescope:keymap_require("n", "<leader>fh", nil, "help_tags"),
-    },
-    opts = {
-        defaults = {
-            mappings = {
-                i = {
-                    ["<C-j>"] = "move_selection_next",
-                    ["<C-k>"] = "move_selection_previous",
+    {
+        -- DEPENDENCIES: rg for more features, and grep as fallback.
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+                cond = require("dotfyls.shortcut").executable("make"),
+                config = function() require("telescope").load_extension("fzf") end,
+            },
+        },
+        cmd = "Telescope",
+        keys = {
+            { "<leader>Ff", function() require("telescope.builtin").find_files() end, silent = true, desc = "Find files (Telescope)" },
+            { "<leader>Fg", function() require("telescope.builtin").live_grep() end, silent = true, desc = "Live grep (Telescope)" },
+            { "<leader>Fb", function() require("telescope.builtin").buffers() end, silent = true, desc = "Buffers (Telescope)" },
+            { "<leader>Fh", function() require("telescope.builtin").help_tags() end, silent = true, desc = "Help tags (Telescope)" },
+        },
+        opts = {
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-j>"] = "move_selection_next",
+                        ["<C-k>"] = "move_selection_previous",
+                    },
                 },
             },
-        },
-        pickers = {
-            buffers = { theme = "dropdown" },
-            colorscheme = {
-                -- currently not working
-                -- see https://github.com/nvim-telescope/telescope.nvim/pull/3097
-                enable_preview = true,
-                previwer = true,
+            pickers = {
+                buffers = { theme = "dropdown" },
+                colorscheme = {
+                    enable_preview = true,
+                    previwer = true,
+                },
+                find_files = { theme = "dropdown" },
+                help_tags = {
+                    theme = "dropdown",
+                    previewer = false,
+                },
+                live_grep = { theme = "dropdown" },
             },
-            find_files = { theme = "dropdown" },
-            help_tags = {
-                theme = "dropdown",
-                previewer = false,
-            },
-            live_grep = { theme = "dropdown" },
         },
     },
+    { "nvim-lua/plenary.nvim", lazy = true },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+    { "nvim-treesitter/nvim-treesitter", lazy = true },
 }

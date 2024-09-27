@@ -1,3 +1,4 @@
+-- TODO: reconfigure and split
 return {
     "folke/zen-mode.nvim",
     dependencies = {
@@ -22,10 +23,13 @@ return {
     },
     cmd = "ZenMode",
     keys = {
-        require("lazy-load"):keymap_require("n", "<leader>zz", "zen-mode", function(zen_mode)
-            zen_mode.toggle()
-            vim.wo.wrap = false
-        end),
+        {
+            "<leader>zz",
+            function()
+                require("zen-mode").toggle()
+                vim.wo.wrap = false
+            end,
+        },
     },
     opts = {
         window = {

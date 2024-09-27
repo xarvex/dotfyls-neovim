@@ -1,34 +1,32 @@
+-- TODO: lazy loading filetypes
 return {
     "stevearc/conform.nvim",
     cmd = "ConformInfo",
-    event = "User BufWritePreFiltered",
+    event = "BufWritePre",
     keys = {
         {
-            "<leader>fm",
+            "<leader>cf",
             function() require("conform").format({ async = true }) end,
+            silent = true,
+            desc = "Format (conform.nvim)",
         },
     },
     opts = {
         formatters_by_ft = {
+            fish = { "fish_indent" },
             go = { "gofumpt", "goimports", "gofmt" },
             javascript = { "prettierd", "prettier" },
             lua = { "stylua" },
-            nix = { "nixfmt", "nixpkgs_fmt" },
+            nix = { "nixfmt" },
             python = { "ruff_format" },
+            sh = { "shfmt" },
             sql = { "sql_formatter" },
+            ["_"] = { "trim_whitespace" },
         },
         default_format_opts = {
             lsp_format = "fallback",
-            stop_after_first = true,
+            stop_after_first = false,
         },
         format_after_save = {},
-        formatters = {
-            sql_formatter = {
-                args = {
-                    "-c",
-                    vim.fs.joinpath(vim.env.XDG_CONFIG_HOME or vim.fs.joinpath(vim.env.HOME, ".config"), "sql-formatter/config.json"),
-                },
-            },
-        },
     },
 }

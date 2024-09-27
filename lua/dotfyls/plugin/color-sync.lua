@@ -1,5 +1,7 @@
+-- TODO: remake with hueniform
 return {
     "https://gitlab.com/xarvex/color-sync.nvim",
+    enabled = false,
     event = "VeryLazy",
-    config = true,
+    opts = {},
 }

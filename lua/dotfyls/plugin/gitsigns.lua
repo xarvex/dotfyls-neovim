@@ -1,9 +1,10 @@
+-- TODO: reconfigure
 return {
     "lewis6991/gitsigns.nvim",
-    event = { "User BufNewFileFiltered", "User BufReadPostFiltered", "User BufWritePreFiltered" },
+    event = { "BufNewFile", "BufReadPost" },
     opts = {
         on_attach = function(bufnr)
-            local keymap = require("dotfyls.shortcut").keymap
+            local keymap = vim.keymap.set
             local opts = { buffer = bufnr }
 
             keymap("n", "[g", function()

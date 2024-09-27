@@ -1,26 +1,53 @@
+local keymap = vim.keymap.set
+
+keymap({ "n", "v" }, "<leader>ra", "<Nop>", { silent = true })
+keymap("n", "<leader>re", "<Nop>", { silent = true })
+keymap("n", "<leader>rC", "<Nop>", { silent = true })
+keymap("n", "<leader>rD", "<Nop>", { silent = true })
+
 return {
     "mrcjkb/rustaceanvim",
     version = "^5",
-    enabled = require("dotfyls.shortcut").executable("rust-analyzer"),
+    cond = require("dotfyls.languages").lsp.path["rust-analyzer"],
+    ft = "rust",
     config = function()
+        keymap(
+            { "n", "v" },
+            "<leader>ra",
+            function() vim.cmd.RustLsp("codeAction") end,
+            { silent = true, desc = "LSP code action (rustaceanvim)" }
+        )
+        keymap(
+            "n",
+            "<leader>re",
+            function() vim.cmd.RustLsp("explainError") end,
+            { silent = true, desc = "rustc explain error (rustaceanvim)" }
+        )
+        keymap("n", "<leader>rC", function() vim.cmd.RustLsp("openCargo") end, { silent = true, desc = "Open Cargo.toml (rustaceanvim)" })
+        keymap("n", "<leader>rD", function() vim.cmd.RustLsp("openDocs") end, { silent = true, desc = "Open docs.rs (rustaceanvim)" })
+
         vim.g.rustaceanvim = {
-            tools = {}, -- TODO
+            tools = {}, -- TODO: configure tools
             server = {
                 on_attach = function(_, bufnr)
-                    local keymap = require("dotfyls.shortcut").keymap
-
-                    keymap({ "n", "v" }, "J", function() vim.cmd.RustLsp("joinLines") end, { buffer = bufnr })
-                    keymap({ "n", "v" }, "<leader>ca", function() vim.cmd.RustLsp("codeAction") end, { buffer = bufnr })
-
-                    keymap("n", "<leader>re", function() vim.cmd.RustLsp("explainError") end, { buffer = bufnr })
-                    keymap("n", "<leader>rC", function() vim.cmd.RustLsp("openCargo") end, { buffer = bufnr })
-                    keymap("n", "<leader>rD", function() vim.cmd.RustLsp("openDocs") end, { buffer = bufnr })
+                    keymap(
+                        { "n", "v" },
+                        "J",
+                        function() vim.cmd.RustLsp("joinLines") end,
+                        { silent = true, buffer = bufnr, desc = "Join lines (rustaceanvim)" }
+                    )
+                    keymap(
+                        "n",
+                        "<leader>ca",
+                        function() vim.cmd.RustLsp("codeAction") end,
+                        { silent = true, buffer = bufnr, desc = "LSP code action (rustaceanvim)" }
+                    )
                 end,
                 default_settings = {
-                    ["rust-analyzer"] = {},
+                    ["rust-analyzer"] = {}, -- TODO: set desired
                 },
             },
-            dap = {}, -- TODO
+            dap = {}, -- TODO: set up dap
         }
     end,
 }

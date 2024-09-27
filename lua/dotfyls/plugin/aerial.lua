@@ -1,32 +1,37 @@
 return {
-    "stevearc/aerial.nvim",
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-        "nvim-treesitter/nvim-treesitter",
+    {
+        "stevearc/aerial.nvim",
+        cmd = {
+            "AerialGo",
+            "AerialInfo",
+            "AerialNavOpen",
+            "AerialNavToggle",
+            "AerialNext",
+            "AerialOpen",
+            "AerialOpenAll",
+            "AerialPrev",
+            "AerialToggle",
+        },
+        keys = {
+            { "<leader>cs", vim.cmd.AerialToggle, silent = true, desc = "Symbols (Aerial)" },
+            { "{", vim.cmd.AerialPrev, silent = true, desc = "Previous symbol (Aerial)" },
+            { "}", vim.cmd.AerialNext, silent = true, desc = "Next symbol (Aerial)" },
+        },
+        opts = {
+            backends = { "lsp", "treesitter", "markdown", "asciidoc", "man" },
+            layout = {
+                win_opts = {
+                    winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+                    signcolumn = "yes",
+                    statuscolumn = " ",
+                },
+            },
+            guides = {
+                mid_item = "├╴",
+                last_item = "└╴",
+            },
+            lsp = { diagnostics_trigger_update = true },
+        },
     },
-    cmd = {
-        "AerialGo",
-        "AerialInfo",
-        "AerialNavOpen",
-        "AerialNavToggle",
-        "AerialNext",
-        "AerialOpen",
-        "AerialOpenAll",
-        "AerialPrev",
-        "AerialToggle",
-    },
-    keys = { { "<leader>o", vim.cmd.AerialToggle } },
-    init = function()
-        -- I should look into making this part of my plugin
-        vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("LazyLoad", {}),
-            callback = function()
-                local keymap = require("dotfyls.shortcut").keymap
-
-                keymap("n", "{", vim.cmd.AerialPrev, { buffer = true })
-                keymap("n", "}", vim.cmd.AerialNext, { buffer = true })
-            end,
-        })
-    end,
-    opts = {},
+    { "nvim-tree/nvim-web-devicons", lazy = true },
 }

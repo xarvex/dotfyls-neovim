@@ -1,45 +1,104 @@
+local o = vim.o
 local opt = vim.opt
 
--- remove crutch
-opt.mouse = nil
+-- Appearance
+--
+o.number = true
+o.relativenumber = true
+o.cursorline = true
+o.cursorlineopt = "number"
+o.showmatch = true
+o.signcolumn = "yes"
+o.colorcolumn = "80"
+o.list = true
+opt.fillchars = {
+    diff = "╱",
+    eob = " ",
+    fold = " ",
+    foldclose = "",
+    foldopen = "",
+    foldsep = " ",
+}
+o.smoothscroll = true
 
--- behavior
-opt.encoding = "UTF-8"
-opt.swapfile = false
-opt.backup = true
-opt.backupdir = vim.fs.joinpath(vim.fn.stdpath("state"), "backup")
-opt.undofile = true
-opt.undodir = vim.fs.joinpath(vim.fn.stdpath("state"), "undo")
-opt.autochdir = false
-opt.updatetime = 50
-opt.splitright = true
-opt.splitbelow = true
+-- Completion
+--
+o.completeopt = "menu,menuone,noselect"
+o.pumheight = 10
+o.pumblend = 15
+o.wildmenu = true
+o.wildmode = "longest:full,full"
+o.wildoptions = o.wildoptions .. ",pum"
 
--- indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.expandtab = true
-opt.smartindent = true
+-- File
+--
+o.autoread = true
+o.updatetime = 200
+o.undolevels = 10000
+o.swapfile = false
+o.backup = true
+---@diagnostic disable-next-line: param-type-mismatch
+o.backupdir = vim.fs.joinpath(vim.fn.stdpath("state"), "backup")
+o.undofile = true
+---@diagnostic disable-next-line: param-type-mismatch
+o.undodir = vim.fs.joinpath(vim.fn.stdpath("state"), "undo")
+opt.shortmess:append({ C = true, I = true, W = true, c = true })
 
--- search
-opt.incsearch = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = false
+-- Fold
+--
+o.foldcolumn = "0"
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.foldmethod = "expr"
+o.foldtext = ""
+o.foldexpr = "v:lua.require'dotfyls.interop'.foldexpr()"
 
--- visual
-opt.number = true
-opt.relativenumber = true
-opt.wrap = false
-opt.scrolloff = 8
-opt.isfname:append("@-@")
-opt.termguicolors = true
-opt.signcolumn = "yes"
-opt.colorcolumn = "80"
+-- Format
+--
+o.formatoptions = "jcroqlnt"
+o.formatexpr = "v:lua.require'lazyvim.interop'.formatexpr()"
 
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function(event)
-        if event.match == "nix" then vim.bo[event.buf].shiftwidth = 2 end
-    end,
-})
+-- Indentation
+--
+o.expandtab = true
+o.smartindent = true
+o.shiftround = true
+o.shiftwidth = 4
+o.tabstop = 4
+
+-- Input
+--
+o.confirm = true
+o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+o.mouse = "a"
+o.mousemodel = "extend"
+o.mousescroll = "ver:4,hor:6"
+
+-- Navigation
+--
+o.jumpoptions = "view"
+
+-- Search
+--
+o.hlsearch = true
+o.incsearch = true
+o.ignorecase = true
+o.smartcase = true
+o.synmaxcol = 500
+
+-- Spell
+--
+o.spell = true
+opt.spelllang = { "en_us", "en" }
+opt.spelloptions:append("noplainbuffer")
+
+-- Window
+--
+o.wrap = false
+o.linebreak = true
+o.splitbelow = true
+o.splitright = true
+o.splitkeep = "screen"
+o.winminwidth = 6
+o.scrolloff = 8
+o.sidescrolloff = 4

@@ -45,17 +45,24 @@
                 let
                   devenvRoot = builtins.readFile inputs.devenv-root.outPath;
                 in
-                # If not overriden (/dev/null), --impure is necessary.
+                # If not overridden (/dev/null), --impure is necessary.
                 lib.mkIf (devenvRoot != "") devenvRoot;
 
               name = "Neovim";
 
               packages = [
+                pkgs.chafa
+                pkgs.codespell
+                pkgs.delta
+                pkgs.fd
+                pkgs.fzf
                 pkgs.gcc
                 pkgs.git
                 pkgs.gnumake
                 pkgs.neovim
                 pkgs.nodejs_22
+                pkgs.ripgrep
+                pkgs.vale-ls
               ];
 
               enterShell = ''
@@ -100,6 +107,8 @@
               withPython3 = lib.mkDefault false;
               withRuby = lib.mkDefault false;
               extraPackages = with pkgs; [
+                chafa
+                delta
                 gcc
                 git
                 gnumake
@@ -107,7 +116,12 @@
               ];
             };
 
+            # TODO: filter Lua files
             xdg.configFile = {
+              "nvim/after" = {
+                recursive = true;
+                source = ./after;
+              };
               "nvim/init.lua".source = ./init.lua;
               "nvim/lua" = {
                 recursive = true;

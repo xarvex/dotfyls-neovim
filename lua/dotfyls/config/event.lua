@@ -1,17 +1,59 @@
-local group = vim.api.nvim_create_augroup("UserEvent", {})
-local filtered_filetypes = require("dotfyls.set").into_set({
-    "oil",
+-- https://www.reddit.com/r/neovim/comments/wlkq0e/neovim_configuration_to_backup_files_with
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = require("dotfyls.shortcut").group,
+    callback = function() vim.opt.backupext = "-" .. os.date("%Y%m%d%H%M") end,
+    desc = "Add timestamp to backup extension",
 })
-local function filter(bufnr) return filtered_filetypes[vim.bo[bufnr].filetype] == nil end
 
--- stylua: ignore
-vim.api.nvim_create_autocmd({
-    "BufNewFile",
-    "BufRead", "BufReadPre", "BufReadPost",
-    "BufWrite", "BufWritePre", "BufWritePost",
-}, {
-    group = group,
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = require("dotfyls.shortcut").group,
     callback = function(event)
-        if filter(event.buf) then vim.api.nvim_exec_autocmds("User", { pattern = event.event .. "Filtered" }) end
+        if not event.match:match("^%w%w+:[\\/][\\/]") then
+            local file = vim.uv.fs_realpath(event.match) or event.match
+            vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+        end
     end,
+    desc = "Create parent directories on write",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = require("dotfyls.shortcut").group,
+    pattern = {
+        "checkhealth",
+        "help",
+        "qf",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.keymap.set("n", "q", vim.cmd.close, { silent = true, buffer = event.buf, desc = "Quit buffer" })
+    end,
+    desc = "Quit keymap assignment",
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = require("dotfyls.shortcut").group,
+    callback = function()
+        vim.schedule(function()
+            if vim.fn.argc() == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
+                if require("lazy.core.config").plugins["oil.nvim"] then
+                    require("oil").open()
+                else
+                    vim.cmd.Ex()
+                end
+            end
+        end)
+    end,
+    once = true,
+    desc = "Open directory on launch when no files",
+})
+
+vim.api.nvim_create_autocmd("VimResized", {
+    group = require("dotfyls.shortcut").group,
+    callback = function()
+        local current_tab = vim.fn.tabpagenr()
+
+        vim.cmd("tabdo wincmd =")
+        vim.cmd.tabnext(current_tab)
+    end,
+    desc = "Resize splits on Neovim resize",
 })

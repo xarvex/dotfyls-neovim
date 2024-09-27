@@ -14,27 +14,21 @@ if vim.fn.isdirectory(lazypath) == 0 then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    -- lazy-load.nvim must be declared first to be able to use in config
-    { "https://gitlab.com/xarvex/lazy-load.nvim", branch = "0.1.x", lazy = true },
-    { import = "dotfyls.plugin" }, -- load other plugins after
-}, {
+require("lazy").setup("dotfyls.plugin", {
     dev = {
         path = vim.env.DOTFYLS_PROJECTS_DIR
             or vim.fs.joinpath(vim.env.XDG_DOCUMENTS_DIR or vim.fs.joinpath(assert(vim.env.HOME), "Documents"), "Projects"),
     },
+    change_detection = { notify = false },
     performance = {
         rtp = {
             disabled_plugins = {
                 "editorconfig",
-                "netrwPlugin",
-                "osc52",
                 "rplugin",
-                "spellfile",
                 "tohtml",
                 "tutor",
             },
         },
     },
 })
-require("dotfyls.shortcut").keymap("n", "<C-A-l>", vim.cmd.Lazy)
+vim.keymap.set("n", "<C-A-l>", vim.cmd.Lazy, { silent = true, desc = "Open Lazy" })
