@@ -14,7 +14,7 @@ if vim.fn.isdirectory(lazypath) == 0 then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("dotfyls.plugin", {
+require("lazy").setup("dotfyls.plugins", {
     dev = {
         path = vim.env.DOTFYLS_PROJECTS_DIR
             or vim.fs.joinpath(vim.env.XDG_DOCUMENTS_DIR or vim.fs.joinpath(assert(vim.env.HOME), "Documents"), "Projects"),
