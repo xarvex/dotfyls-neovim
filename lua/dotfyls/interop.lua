@@ -1,5 +1,7 @@
 local M = {}
 
+M.group = vim.api.nvim_create_augroup("dotfyls", {})
+
 local foldexpr_skip = {} ---@type table<number,boolean>
 local foldexpr_check = vim.uv.new_check()
 function M.foldexpr()

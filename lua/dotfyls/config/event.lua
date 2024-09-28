@@ -1,12 +1,12 @@
 -- https://www.reddit.com/r/neovim/comments/wlkq0e/neovim_configuration_to_backup_files_with
 vim.api.nvim_create_autocmd("BufWritePre", {
-    group = require("dotfyls.shortcut").group,
+    group = require("dotfyls.interop").group,
     callback = function() vim.opt.backupext = "-" .. os.date("%Y%m%d%H%M") end,
     desc = "Add timestamp to backup extension",
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    group = require("dotfyls.shortcut").group,
+    group = require("dotfyls.interop").group,
     callback = function(event)
         if not event.match:match("^%w%w+:[\\/][\\/]") then
             local file = vim.uv.fs_realpath(event.match) or event.match
@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    group = require("dotfyls.shortcut").group,
+    group = require("dotfyls.interop").group,
     pattern = {
         "checkhealth",
         "help",
@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
-    group = require("dotfyls.shortcut").group,
+    group = require("dotfyls.interop").group,
     callback = function()
         vim.schedule(function()
             if vim.fn.argc() == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd("VimResized", {
-    group = require("dotfyls.shortcut").group,
+    group = require("dotfyls.interop").group,
     callback = function()
         local current_tab = vim.fn.tabpagenr()
 

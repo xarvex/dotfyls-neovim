@@ -21,7 +21,7 @@ return {
             map_oil()
 
             vim.api.nvim_create_autocmd("BufEnter", {
-                group = require("dotfyls.shortcut").group,
+                group = require("dotfyls.interop").group,
                 callback = function(args)
                     vim.schedule(function()
                         if vim.fn.isdirectory(vim.api.nvim_buf_get_name(args.buf)) == 1 then require("oil") end

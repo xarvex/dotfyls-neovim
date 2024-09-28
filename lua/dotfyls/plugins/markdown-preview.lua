@@ -2,7 +2,7 @@
 return {
     "iamcco/markdown-preview.nvim",
     build = function(plugin)
-        if require("dotfyls.shortcut").executable("npx") then
+        if vim.fn.executable("npx") == 1 then
             vim.cmd("!cd '" .. plugin.dir .. "'/app && npx -y yarn install")
         else
             require("lazy").load({ plugins = { plugin.name } })

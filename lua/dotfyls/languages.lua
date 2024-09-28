@@ -144,7 +144,7 @@ local lsps = {
 }
 
 for server, data in pairs(lsps) do
-    M.lsp.path[server] = require("dotfyls.shortcut").executable(server)
+    M.lsp.path[server] = vim.fn.executable(server) == 1
     if M.lsp.path[server] then
         if type(data.language) == "table" then
             if type(data.language.ft) == "table" then

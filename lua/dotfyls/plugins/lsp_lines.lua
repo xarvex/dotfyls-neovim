@@ -13,7 +13,7 @@ return {
         }, vim.api.nvim_get_namespaces().lazy)
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "oil",
-            group = require("dotfyls.shortcut").group,
+            group = require("dotfyls.interop").group,
             callback = function()
                 vim.diagnostic.config({
                     virtual_text = true,

@@ -2,7 +2,7 @@ return {
     "mfussenegger/nvim-lint",
     event = { "BufNewFile", "BufReadPost" },
     init = function()
-        if require("dotfyls.shortcut").executable("codespell") then vim.o.spell = false end
+        if vim.fn.executable("codespell") == 1 then vim.o.spell = false end
     end,
     config = function()
         require("lint").linters_by_ft = {
@@ -23,7 +23,7 @@ return {
 
             linters = vim.tbl_filter(function(name)
                 local linter = require("lint").linters[name]
-                return require("dotfyls.shortcut").executable(linter.cmd)
+                return vim.fn.executable(linter.cmd) == 1
                     ---@diagnostic disable-next-line: undefined-field
                     and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
             end, linters)
@@ -35,7 +35,7 @@ return {
 
         local timer = vim.uv.new_timer()
         vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave" }, {
-            group = require("dotfyls.shortcut").group,
+            group = require("dotfyls.interop").group,
             callback = function(args)
                 timer:start(100, 0, function()
                     timer:stop()

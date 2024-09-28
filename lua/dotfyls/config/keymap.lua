@@ -84,7 +84,7 @@ keymap("n", "<leader>cC", vim.lsp.codelens.refresh, { silent = true, desc = "LSP
 keymap("n", "<leader>cr", vim.lsp.buf.rename, { silent = true, desc = "LSP rename" })
 keymap("n", "<leader>i", "<Nop>", { silent = true, desc = "LSP toggle inlay hint" })
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = require("dotfyls.shortcut").group,
+    group = require("dotfyls.interop").group,
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client ~= nil and client.server_capabilities.inlayHintProvider then
