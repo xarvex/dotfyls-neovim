@@ -1,7 +1,6 @@
 return {
     {
         "kevinhwang91/nvim-ufo",
-        dependencies = "kevinhwang91/promise-async",
         event = { "BufNewFile", "BufReadPost" },
         keys = {
             { "zR", function() require("ufo").openAllFolds() end },
@@ -46,4 +45,5 @@ return {
             end,
         },
     },
+    { "kevinhwang91/promise-async", lazy = true },
 }
