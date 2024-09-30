@@ -13,7 +13,7 @@ return {
                 vim.list_extend(keys, {
                     {
                         "<leader>xt",
-                        function() vim.cmd.Trouble("todo toggle focus=true filter = {tag = {FIX,TODO,HACK,WARN}}") end,
+                        function() vim.cmd.Trouble("todo toggle focus=true filter = {tag = {FIX,TODO,HACK}}") end,
                         silent = true,
                         desc = "Todo actionable comments (Trouble)",
                     },
