@@ -61,7 +61,7 @@ return {
                 },
                 view_options = {
                     show_hidden = true,
-                    is_always_hidden = function(name, _) return hidden_files[name] end,
+                    is_always_hidden = function(name) return hidden_files[name] end,
                 },
             }
         end,
