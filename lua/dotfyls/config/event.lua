@@ -33,17 +33,23 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("VimEnter", {
     group = require("dotfyls.interop").group,
     callback = function()
-        vim.schedule(function()
-            if vim.fn.argc() == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
-                local has_lazy, lazy_config = pcall(require, "lazy.core.config")
+        if vim.fn.argc(-1) == 0 then
+            vim.schedule(function()
+                if vim.fn.line2byte(vim.fn.line("$")) == -1 then
+                    local has_lazy, lazy_config = pcall(require, "lazy.core.config")
 
-                if has_lazy and lazy_config.plugins["oil.nvim"] then
-                    require("oil").open()
-                else
-                    vim.cmd.Ex()
+                    if has_lazy and lazy_config.plugins["oil.nvim"] then
+                        require("oil").open()
+                    else
+                        vim.cmd.Ex()
+                    end
                 end
-            end
-        end)
+            end)
+        else
+            local has_lazy, lazy_config = pcall(require, "lazy.core.config")
+
+            if has_lazy and lazy_config.plugins["oil.nvim"] then require("lazy").load({ plugins = { "oil.nvim" } }) end
+        end
     end,
     once = true,
     desc = "Open directory on launch when no files",
