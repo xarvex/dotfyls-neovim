@@ -11,18 +11,6 @@ return {
             virtual_text = true,
             virtual_lines = false,
         }, vim.api.nvim_get_namespaces().lazy)
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "oil",
-            group = require("dotfyls.interop").group,
-            callback = function()
-                vim.diagnostic.config({
-                    virtual_text = true,
-                    virtual_lines = false,
-                }, vim.api.nvim_get_namespaces().Oil)
-            end,
-            once = true,
-            desc = "lsp_lines unloading (Oil)",
-        })
 
         return {}
     end,
