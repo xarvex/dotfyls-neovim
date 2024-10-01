@@ -59,6 +59,10 @@ keymap(
     { silent = true, desc = "Next diagnostic error" }
 )
 
+-- File
+--
+keymap("n", "-", vim.cmd.Ex, { silent = true, desc = "Open parent directory" })
+
 -- Movement
 --
 keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move down" })

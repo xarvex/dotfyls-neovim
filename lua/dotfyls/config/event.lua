@@ -35,7 +35,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         vim.schedule(function()
             if vim.fn.argc() == 0 and vim.fn.line2byte(vim.fn.line("$")) == -1 then
-                if require("lazy.core.config").plugins["oil.nvim"] then
+                local has_lazy, lazy_config = pcall(require, "lazy.core.config")
+
+                if has_lazy and lazy_config.plugins["oil.nvim"] then
                     require("oil").open()
                 else
                     vim.cmd.Ex()

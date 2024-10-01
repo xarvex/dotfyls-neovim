@@ -56,7 +56,7 @@ o.foldexpr = "v:lua.require'dotfyls.interop'.foldexpr()"
 -- Format
 --
 o.formatoptions = "jcroqlnt"
-o.formatexpr = "v:lua.require'lazyvim.interop'.formatexpr()"
+o.formatexpr = "v:lua.require'dotfyls.interop'.formatexpr()"
 
 -- Indentation
 --
