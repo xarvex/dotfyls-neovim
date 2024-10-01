@@ -39,7 +39,8 @@ return {
             callback = function(args)
                 timer:start(100, 0, function()
                     timer:stop()
-                    vim.schedule_wrap(lint)(args.buf)
+
+                    vim.schedule(function() lint(args.buf) end)
                 end)
             end,
             desc = "Lint (nvim-lint)",
